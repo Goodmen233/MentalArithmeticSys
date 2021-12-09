@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>用户页面</title>
+
+<link rel="stylesheet" href="css/totalCss.css">
+
+</head>
+<body>
+	<!-- 最外层 -->
+	<div class="outer">
+		<!-- 左边菜单栏 -->
+		<div class="leftBlock">
+			<div class="leftMenu">
+				<!-- 头像 -->
+				<div class="avatar">
+					
+				</div>
+				<div class="btnBlock">个人信息中心</div>
+				<div class="btnBlock">进入测试</div>
+				<div class="btnBlock">历史测试信息</div>
+			</div>
+		</div>
+		<!-- 右边模块 -->
+		<div class="rightBlock">
+			<div style="position:absolute; height: 20px; width: 1120px;top: 28px;left: 375px;background-color: #ffffff;opacity: 0.6;border-radius: 20px;z-index: -1"></div>
+
+			<!-- 个人信息模块 -->
+			<div class="rightMask" id="userInfoBlock" style="display: none;">
+				<div class="dispInfo">
+					<div class="infoTitle">个人信息</div>
+					<!-- 用户信息显示区域 -->
+					<div class="infoBlock">
+						<div style="width: 100%;margin-top: 20px;">
+							<div class="infoLabel">用户名</div>
+							<div class="infoLabelDe">admin123</div>
+						</div>
+						<div style="width: 100%;margin-top: 20px;">
+							<div class="infoLabel">姓名</div>
+							<div class="infoLabelDe">啥玩意儿</div>
+						</div>
+						<div style="width: 100%;margin-top: 20px;">
+							<div class="infoLabel">测试总数</div>
+							<div class="infoLabelDe">99999</div>
+						</div>	
+					</div>
+					<!-- 修改个人信息按钮 -->
+					<div class="alterInfo">修改个人信息</div>
+					<!-- 历史记录表单 -->
+					<div class="scroll">
+						<div style="width: 90%;word-break:break-all; margin-left: 30px;margin-top: 15px;">
+							<div class="historyMaxListTB">
+								<div class="historyMaxLabel">类型</div>
+								<div class="historyMaxLabel">成绩</div>
+								<div class="historyMaxLabel">时间</div>
+							</div>
+							<div class="historyMaxListTB">
+								<div class="historyMaxLabel">二位整数混合运算</div>
+								<div class="historyMaxLabel">5分钟</div>
+								<div class="historyMaxLabel">1974.08.10</div>
+							</div>
+							<div class="historyMaxListTB">
+								<div class="historyMaxLabel">二位实数混合运算</div>
+								<div class="historyMaxLabel">10分钟</div>
+								<div class="historyMaxLabel">1840.9.13</div>
+							</div>
+							<div class="historyMaxListTB">
+								<div class="historyMaxLabel">二位分数混合运算</div>
+								<div class="historyMaxLabel">19'23''</div>
+								<div class="historyMaxLabel">1976.03.14</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div style="margin-top: 140px;">
+					<img src="images/cat1.gif" class="imgBg">
+				</div>
+			</div>
+
+			<!-- 进入测试模块 -->
+			<div class="rightMask" id="examBlock" style="display: block;">
+				<div style="height: 20px;"></div>
+				<div class="examTypeChoose">
+					<label>算数位数</label>
+					<input type="radio" name="二位"><label>二位</label>
+					<input type="radio" name="三位"><label>三位</label>
+					<input type="radio" name="四位"><label>四位</label>
+				</div>
+				<div class="examTypeChoose">
+					<label>算数类型</label>
+					<input type="radio" name="整数"><label>整数</label>
+					<input type="radio" name="实数"><label>实数</label>
+					<input type="radio" name="分数"><label>分数</label>
+				</div>
+				<div class="examTypeChoose">
+					<label>测试模式</label>
+					<input type="radio" name="整数"><label>十分钟测试</label>
+					<input type="radio" name="实数"><label>100道题测试</label>
+					<input type="radio" name="分数"><label>正确一百题</label>
+				</div>
+				<div>开始测试</div>
+			</div>
+
+		</div>
+	</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>

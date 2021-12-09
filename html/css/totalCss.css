@@ -1,0 +1,197 @@
+body{
+	background-image: url(../images/bg.png);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/*最外层样式*/
+.outer{
+	height: 100vh;
+	width: 100vw;
+	/*background-color: #143322;*/
+	display: flex;
+}
+
+/*左边模块*/
+.leftBlock{
+	width: 300px;
+	height: inherit;
+	/*background-color: #143322;*/
+	display: flex;
+}
+
+/*左边菜单*/
+.leftMenu{
+	width: inherit;
+	height: 90%;
+	/*background-color: #57818BFF;*/
+	/*background-color: #779988FF;*/
+	/*background-color: rgba(128,166,172,0.85);*/
+	background-color: rgba(255,255,255,0.9);
+	margin: auto;
+	border-right-style: solid;
+	border-right-width: 4px;
+	border-right-color: #FFD800FF;
+	border-radius: 0 20px 20px 0;
+	/*opacity: 0.7;*/
+}
+
+/*用户头像显示*/
+.avatar{
+	height: 120px;
+	width: 120px;
+	border-radius: 100px;
+	background-color: #C0C0C0;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+/*菜单栏中的按钮*/
+.btnBlock{
+	height: 50px;
+	width: 98%;
+	margin: 0 auto;
+	margin-top: 30px;
+	background-color: #F9F9F9FF;
+	border-left-style: solid;
+	border-left-color: #FF0000FF;
+	border-left-width: 5px;
+	color: #FF0000FF;
+	font-weight: bold;
+	line-height: 50px;
+	text-align: center;
+	cursor: default;
+}
+
+.btnBlock:hover{
+	background-color: #EAEAEAFF;
+}
+
+/*右边模块*/
+.rightBlock{
+	height: inherit;
+	width:1250px;
+	/*background-color: #143322;*/
+}
+
+
+.rightMask{
+	height: 90%;
+	width: 95%;
+	background-color: rgba(255,255,255,0.9);
+	margin-top: 5vh;
+	margin-left: 50px;
+	border-radius: 20px 20px 20px 20px; 
+	border-left-style: solid;
+	border-left-width: 4px;
+	border-left-color: #FFE97FFF;
+	display: flex;
+}
+
+/*显示信息模块*/
+.dispInfo{
+	height: inherit;
+	width: 750px;
+	text-align: center;
+	/*background-color: #121388;*/
+	margin-top: 10px;
+}
+
+.infoTitle{
+	font-weight: bold;
+	font-size: 24px;
+	margin-top: 40px;
+}
+
+.infoBlock{
+	height: 240px;
+	width: 500px;
+	text-align: left;
+	margin: 0 auto;
+	/*background-color: #000000;*/
+}
+
+.infoLabel{
+	display: inline-block;
+	height: 50px;
+	width: 120px;
+	background-color: #FFD800FF;
+	line-height: 50px;
+	align-content: center;
+	text-align: center;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+.infoLabelDe{
+	display: inline-block;
+	height: 50px;
+	width: 250px;
+	background-color: #FFD800FF;
+	line-height: 50px;
+	align-content: center;
+	text-align: center;
+	margin-left: 30px;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+/*修改个人信息按钮*/
+.alterInfo{
+	height: 40px;
+	width: 120px;
+	text-align: center;
+	line-height: 40px;
+	margin-left: 300px;
+	border-radius: 15px;
+	color: #ffffff;
+	background-color: #FFD800FF;
+}
+
+/*用户信息i小猫图片*/
+.imgBg{
+	opacity: 0.1;
+}
+
+/*历史测试最高成绩滚动框*/
+.scroll{
+	height: 200px;
+	width: 600px;
+	margin: 0 auto;
+	/*background-color: #143213;*/
+	margin-top: 20px;
+	overflow-y: scroll;
+}
+
+/*个人信息页面显示的历史最高得分*/
+.historyMaxListTB{
+	height: 50px;
+	width: 540px;
+	/*background-color: #F2F2F2;*/
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.historyMaxLabel{
+	height: inherit;
+	width: 170px;
+	display: flex;
+	background-color: #F2F2F2FF;
+	margin: auto;
+	line-height: 50px;
+	justify-content: center;
+}
+
+/*测试选项样式*/
+.examTypeChoose{
+	height: 50px;
+	width: 90%;
+	background-color: #189124;
+	margin-top: 20px;
+	margin-left: 
+}
