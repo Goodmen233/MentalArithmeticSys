@@ -10,6 +10,7 @@
 <body>
 	<!-- 最外层 -->
 	<div class="outer">
+		<div class="mask"></div>
 		<!-- 左边菜单栏 -->
 		<div class="leftBlock">
 			<div class="leftMenu">
@@ -17,9 +18,9 @@
 				<div class="avatar">
 					
 				</div>
-				<div class="btnBlock">个人信息中心</div>
-				<div class="btnBlock">进入测试</div>
-				<div class="btnBlock">历史测试信息</div>
+				<div class="btnBlock" id="userInfoBtn">个人信息中心</div>
+				<div class="btnBlock" id="enterExamBtn">进入测试</div>
+				<div class="btnBlock" id="historyInfoBtn">历史测试信息</div>
 			</div>
 		</div>
 		<!-- 右边模块 -->
@@ -27,7 +28,7 @@
 			<div style="position:absolute; height: 20px; width: 1120px;top: 28px;left: 375px;background-color: #ffffff;opacity: 0.6;border-radius: 20px;z-index: -1"></div>
 
 			<!-- 个人信息模块 -->
-			<div class="rightMask" id="userInfoBlock" style="display: none;">
+			<div class="rightMask" id="userInfoBlock">
 				<div class="dispInfo">
 					<div class="infoTitle">个人信息</div>
 					<!-- 用户信息显示区域 -->
@@ -77,38 +78,67 @@
 				<div style="margin-top: 140px;">
 					<img src="images/cat1.gif" class="imgBg">
 				</div>
+
+				<!-- 修改个人信息模块 -->
+				<div class="alterInfoBlock">
+					<div>
+						
+					</div>
+					<div>
+						
+					</div>
+					<div>
+						
+					</div>
+				</div>
 			</div>
 
 			<!-- 进入测试模块 -->
-			<div class="rightMask" id="examBlock" style="display: block;">
+			<div class="rightMask" id="examBlock" style="display: block;" hidden>
 				<div style="height: 20px;"></div>
 				<div class="examTypeChoose">
 					<label>算数位数</label>
-					<input type="radio" name="二位"><label>二位</label>
-					<input type="radio" name="三位"><label>三位</label>
-					<input type="radio" name="四位"><label>四位</label>
+					<input type="radio" name="digit" id="d2" hidden><label for="d2" class="radioStyle">二位</label>
+					<input type="radio" name="digit" id="d3" hidden><label for="d3" class="radioStyle">三位</label>
+					<input type="radio" name="digit" id="d4" hidden><label for="d4" class="radioStyle">四位</label>
 				</div>
 				<div class="examTypeChoose">
 					<label>算数类型</label>
-					<input type="radio" name="整数"><label>整数</label>
-					<input type="radio" name="实数"><label>实数</label>
-					<input type="radio" name="分数"><label>分数</label>
+					<input type="radio" name="type" id="t1" hidden><label for="t1" class="radioStyle">整数</label>
+					<input type="radio" name="type" id="t2" hidden><label for="t2" class="radioStyle">实数</label>
+					<input type="radio" name="type" id="t3" hidden><label for="t3" class="radioStyle">分数</label>
 				</div>
 				<div class="examTypeChoose">
 					<label>测试模式</label>
-					<input type="radio" name="整数"><label>十分钟测试</label>
-					<input type="radio" name="实数"><label>100道题测试</label>
-					<input type="radio" name="分数"><label>正确一百题</label>
+					<input type="radio" name="modal" id="m1" hidden><label for="m1" class="radioStyle">十分钟测试</label>
+					<input type="radio" name="modal" id="m2" hidden><label for="m2" class="radioStyle">100道题测试</label>
+					<input type="radio" name="modal" id="m3" hidden><label for="m3" class="radioStyle">正确一百题</label>
 				</div>
-				<div>开始测试</div>
+				<div style="width: 100%;display: flex; justify-content: center;">
+					<div class="beginBtn">开始测试</div>
+				</div>
+				
 			</div>
 
+			<!-- 历史记录模块 -->
+			<div class="rightMask" id="historyBlock" style="display: block;" hidden>
+				<div class="historyTitle" style="display: block;">历史测试记录</div>
+				<div style="width: 90%; word-break:break-all;height: 480px;margin: auto;margin-top: 0px; background-color: #A86256FF;display: block;padding-top: 60px;">
+					<div class="historyShowInfoBlcok" id="historyList">
+						<div class="historyLabelDiv" id="historyTitle">
+							<span class="historyLabel">测试类型</span>
+							<span class="historyLabel">分数</span>
+							<span class="historyLabel" style="width: 250px;">时间</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
 
 <script src="js/jquery.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/userInfo.js"></script>
 
 </body>
 </html>

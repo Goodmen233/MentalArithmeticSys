@@ -17,6 +17,17 @@ body{
 	display: flex;
 }
 
+/*黑罩*/
+.mask{
+	height: 100vh;
+	width: 100vw;
+	background-color: #000000;
+	opacity: 0.8;
+	position: absolute;
+	z-index: 10;
+}
+
+
 /*左边模块*/
 .leftBlock{
 	width: 300px;
@@ -151,11 +162,23 @@ body{
 	border-radius: 15px;
 	color: #ffffff;
 	background-color: #FFD800FF;
+	cursor: default;
 }
 
 /*用户信息i小猫图片*/
 .imgBg{
 	opacity: 0.1;
+}
+
+/*修改个人信息模块*/
+.alterInfoBlock{
+	height: 500px;
+	width: 400px;
+	position: absolute;
+	z-index: 11;
+	left: 600px;
+	top: 130px;
+	background-color: #ffffff;
 }
 
 /*历史测试最高成绩滚动框*/
@@ -191,7 +214,85 @@ body{
 .examTypeChoose{
 	height: 50px;
 	width: 90%;
-	background-color: #189124;
+	/*background-color: #189124;*/
 	margin-top: 20px;
-	margin-left: 
+	margin-left: 40px;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: 'Microsoft Yahei' sans-serif;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+
+/*radioBTN的样式*/
+.radioStyle{
+	height: 24px;
+	width: 90px;
+	margin-left: 40px;
+	line-height: 24px;
+	padding-left: 18px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	background-image: url(../images/radio_box.png);
+	background-position: left center;
+	/*background-color: #D59229FF;*/
+}
+
+input[type="radio"]:checked + .radioStyle{
+	background-image: url(../images/radio_box_fill.png);
+}
+
+/*开始按钮*/
+.beginBtn{
+	height: 40px;
+	width: 80px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-right-color: #64829AFF;
+	border-bottom-color: #64829AFF;
+	text-align: center;
+	line-height: 40px;
+	cursor: default;	
+	margin-top: 30px;
+}
+
+.beginBtn:hover{
+	background-color: #EFEFEFFF
+}
+
+
+/*历史测试记录显示模块*/
+.historyShowInfoBlcok{
+	height: 400px;
+	width: 1000px;
+	margin: auto;
+	overflow-y: scroll;
+	background-color: #E6AF18FF
+}
+
+.historyTitle{
+	height: 50px;
+	width: 100px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 50px;
+}
+
+/*历史记录类型*/
+.historyLabelDiv{
+	margin-left: 100px;
+}
+
+.historyLabel{
+	display: inline-block;
+	height: 50px;
+	width: 150px;
+	text-align: center;
+	line-height: 50px;
+	margin-left: 50px;
+	background-color: #D4B52AFF;
 }
