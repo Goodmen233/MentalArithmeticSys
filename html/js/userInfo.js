@@ -1,4 +1,7 @@
 $(function(){
+
+	onload();
+
 	$("#userInfoBtn").click(function(){
 		$("#userInfoBlock").show();
 		$("#examBlock").hide();
@@ -37,3 +40,9 @@ $(function(){
 	})
 
 })
+function onload(){
+	$("#userInfoBlock").show();
+	$("#examBlock").hide();
+	$("#historyBlock").hide();
+	console.log("onload");
+}

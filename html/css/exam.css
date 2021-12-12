@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
 body{
@@ -13,7 +14,7 @@ body{
 }
 
 /*上层显示栏*/
-.top{
+.topLine{
 	height: 50px;
 	width: 100vw;
 	background-color: #4F6BAFFF;
@@ -24,11 +25,12 @@ body{
 .subject{
 	height:600px;
 	width:  1000px;
-	background-color: rgba(255,255,255,0.8);
+	background-color: rgba(255,255,255,1);
 	margin-top: 50px;
 	margin-left: 30px;
 	display: inline-block;
 }
+
 
 /*答题卡*/
 .answerSheet{
@@ -69,3 +71,124 @@ body{
 	font-weight: bold;
 	font-size: 16px;
 }
+
+.answer{
+	height: 52px;
+	width: 202px;
+	border:none;
+	font-size: 18px;
+	background-color: #CD8131FF;
+	text-align: center;
+	line-height: 51px;
+	margin-top: 50px;
+	margin-left: 600px;
+}
+
+.answerInput{
+	height: 50px;
+	width: 100px;
+	border:none;
+	font-size: 18px;
+}
+
+.subject>.changeBtn{
+	height: 40px;
+	width: 100px;
+	position: absolute;
+	right: 510px;
+	bottom: 55px;
+	background-color: #98CA34FF;
+	line-height: 40px;
+	text-align: center;
+}
+
+
+/**
+	日历翻页css实现
+*/
+    #app {
+
+		height: 100%;
+		font-size: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: wrap-reverse;
+    }
+
+    #alg {
+		box-sizing: border-box;
+		height: 100%;
+		font-size: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: wrap-reverse;
+    }
+
+	#adder2 {
+    	box-sizing: border-box;
+		height: 100%;
+		font-size: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: wrap-reverse;
+    }
+
+    .box {
+      position: relative;
+      box-sizing: border-box;
+      margin: 5px;
+    }
+
+    .box .child {
+      width: 130px;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .box>.top {
+      background-color: #333;
+      line-height: 200px;
+      border-bottom: 2px solid #fff;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .box .flip {
+      position: absolute;
+      top: 0px;
+      z-index: 1;
+      transform-origin: bottom;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .box .flip .flip_face {
+      position: absolute;
+      background-color: #333;
+      line-height: 200px;
+      z-index: 1;
+      border-bottom: 2px solid #fff;
+    }
+
+    .box .flip .flip_back {
+      position: absolute;
+      background-color: #333;
+      line-height: 0px;
+      transform: perspective(500px) rotateX(0deg) rotateY(-180deg) rotate(180deg);
+      border-top: 2px solid #fff;
+    }
+
+    .box .bottom {
+      background-color: #333;
+      line-height: 0px;
+      border-top: 2px solid #fff;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .text {
+      text-align: center;
+      font-size: 100px;
+      font-weight: 900;
+      color: #fff;
+    }

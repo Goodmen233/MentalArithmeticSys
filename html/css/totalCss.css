@@ -181,6 +181,57 @@ body{
 	background-color: #ffffff;
 }
 
+.alterInfoForm{
+	height: 40px;
+	width: inherit;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.alterInfoTitle{
+	height: 50px;
+	width: inherit;
+	text-align: center;
+	line-height: 50px;
+}
+
+.alterInfoLabel{
+	height: 40px;
+	line-height: 40px;
+	width: 100px;
+	display: inline-block;
+	background-color: #94C03EFF;
+	text-align: center;
+}
+
+
+.alterInfoLabel1{
+	height: 40px;
+	line-height: 40px;
+	width: 200px;
+	display: inline-block;
+	background-color: #94C03EFF;
+	text-align: center;
+}
+
+.inputBox{
+	margin: 0;
+	padding: 0;
+	border:none;
+	height: 35px;
+	width: 180px;
+}
+
+.confirmAlterBtn{
+	height: 40px;
+	width: 100px;
+	background-color: #659D61FF;
+	line-height: 40px;
+	text-align: center;
+	margin: auto;
+	cursor: default;
+}
+
 /*历史测试最高成绩滚动框*/
 .scroll{
 	height: 200px;

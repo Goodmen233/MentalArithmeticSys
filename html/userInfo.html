@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="css/totalCss.css">
 
 </head>
-<body>
+<body onload="onload()">
 	<!-- 最外层 -->
 	<div class="outer">
-		<div class="mask"></div>
+		<div class="mask" hidden="True"></div>
 		<!-- 左边菜单栏 -->
 		<div class="leftBlock">
 			<div class="leftMenu">
@@ -80,21 +80,34 @@
 				</div>
 
 				<!-- 修改个人信息模块 -->
-				<div class="alterInfoBlock">
-					<div>
-						
+				<div class="alterInfoBlock" hidden="True">
+					<div class="alterInfoTitle">
+						修改个人信息
 					</div>
-					<div>
-						
+					<div class="alterInfoForm">
+						<div class="alterInfoLabel">用户昵称</div>
+						<div class="alterInfoLabel1"><input type="text" name="username" class="inputBox"></div>
 					</div>
-					<div>
-						
+					<div class="alterInfoForm">
+						<div class="alterInfoLabel">真实姓名</div>
+						<div class="alterInfoLabel1"><input type="text" name="name" class="inputBox"></div>
+					</div>
+					<div class="alterInfoForm">
+						<div class="alterInfoLabel">旧密码</div>
+						<div class="alterInfoLabel1"><input type="password" name="oldPsw" class="inputBox"></div>
+					</div>
+					<div class="alterInfoForm">
+						<div class="alterInfoLabel">新密码</div>
+						<div class="alterInfoLabel1"><input type="password" name="newPsw" class="inputBox"></div>
+					</div>
+					<div style="width: inherit;height: 40px;">
+						<div class="confirmAlterBtn">确认修改</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- 进入测试模块 -->
-			<div class="rightMask" id="examBlock" style="display: block;" hidden>
+			<div class="rightMask" id="examBlock" style="display: block;" hidden="True">
 				<div style="height: 20px;"></div>
 				<div class="examTypeChoose">
 					<label>算数位数</label>
@@ -121,7 +134,7 @@
 			</div>
 
 			<!-- 历史记录模块 -->
-			<div class="rightMask" id="historyBlock" style="display: block;" hidden>
+			<div class="rightMask" id="historyBlock" style="display: block;" hidden="True">
 				<div class="historyTitle" style="display: block;">历史测试记录</div>
 				<div style="width: 90%; word-break:break-all;height: 480px;margin: auto;margin-top: 0px; background-color: #A86256FF;display: block;padding-top: 60px;">
 					<div class="historyShowInfoBlcok" id="historyList">
