@@ -3,7 +3,6 @@ package com.fiveonetwo.arithmetic.controller;
 import com.fiveonetwo.arithmetic.entity.Score;
 import com.fiveonetwo.arithmetic.entity.User;
 import com.fiveonetwo.arithmetic.service.AdminService;
-import com.fiveonetwo.arithmetic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
