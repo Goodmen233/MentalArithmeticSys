@@ -1,4 +1,4 @@
-个人信息
+=============================================================个人信息
 in：账号密码  out：用户名、姓名、测试总数、各个类型测试的最高分列表（类型、成绩、时间）
 --
 请求地址：/login
@@ -26,6 +26,7 @@ in：用户id、密码、用户名 out：1 or-1
 请求地址：/updateUserInfo
 传参：userId, username, password
 返回：1 or -1
+注：用户名唯一！否则返回-1
 
 注册
 in：密码、用户名、姓名  out：1 or -1
@@ -33,12 +34,34 @@ in：密码、用户名、姓名  out：1 or -1
 请求地址：/register
 传参：username, password, name, sex
 返回：1 or -1
-注：用户名唯一！
+注：用户名唯一！否则返回-1
 
-管理员：
+================================================================管理员：
 用户信息
 out：用户id、用户名、姓名、密码、性别、权限
+--
+请求地址：/getAllUser
+返回：rows, code, total
+注：以上三个参数bootstrap table框架要求的
+
 修改用户信息
 in：用户id、用户名、姓名、密码、性别、权限 out：1 or -1
+--
+请求地址：/updateUser
+传参：userId, username, name, password, sex, authority
+返回：1 or -1
+注：用户名唯一！否则返回-1
+
 用户测试信息
 out：测试序号、用户id、用户名、姓名、类型、成绩、时间
+--
+请求地址：/getAllUserScore
+返回:rows, code, total
+注：以上三个参数bootstrap table框架要求的
+
+平均分
+out:类型 平均分
+--
+请求地址：/getAvgScore
+返回:rows, code, total
+注：以上三个参数bootstrap table框架要求的

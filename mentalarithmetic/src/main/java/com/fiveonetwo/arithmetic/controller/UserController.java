@@ -71,8 +71,12 @@ public class UserController {
     @ResponseBody
     public int updateUserInfo(Integer userId, String username, String password){
         User user = new User();
-        user.setId(userId);
         user.setUsername(username);
+        // 如果服务器相同的用户名，则不让注册
+        if(userService.selectUser(user).size() != 0){
+            return -1;
+        }
+        user.setId(userId);
         user.setPassword(password);
         return userService.updateUser(user);
     }

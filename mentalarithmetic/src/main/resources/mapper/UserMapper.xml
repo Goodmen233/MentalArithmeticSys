@@ -21,7 +21,7 @@
         where uid = #{userId}
     </select>
     <select id="selectAllTestScoreById" parameterType="int" resultType="score">
-        select type, num, time, timeStamp, finalScore
+        select sid, uid, type, num, time, timeStamp, finalScore
         from score
         where uid = #{userId}
     </select>
