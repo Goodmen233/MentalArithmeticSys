@@ -11,6 +11,7 @@ body{
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	/*float: right;*/
 }
 
 /*上层显示栏*/
@@ -19,6 +20,18 @@ body{
 	width: 100vw;
 	background-color: #4F6BAFFF;
 	opacity: 0.8;
+}
+
+/*倒计时显示*/
+.time{
+	width: 50px;
+	height: inherit;
+	line-height: 50px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	display: inline-block;
+	float: right;
 }
 
 /*测试题目显示区域*/
@@ -63,6 +76,22 @@ body{
 	width: 50px;
 	border-radius: 10px;
 	background-color: #2BD351FF;
+	/*background-color: #850D04FF;*/
+	margin-left: 30px;
+	margin-top: 20px;
+	display: inline-block;
+	line-height: 50px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.wrongBlock{
+	height: 50px;
+	width: 50px;
+	border-radius: 10px;
+	/*background-color: #2BD351FF;*/
+	background-color: #850D04FF;
 	margin-left: 30px;
 	margin-top: 20px;
 	display: inline-block;
@@ -127,6 +156,26 @@ body{
     }
 
 	#adder2 {
+    	box-sizing: border-box;
+		height: 100%;
+		font-size: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: wrap-reverse;
+    }
+
+    #adder11 {
+    	box-sizing: border-box;
+		height: 100%;
+		font-size: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: wrap-reverse;
+    }
+
+	#adder22 {
     	box-sizing: border-box;
 		height: 100%;
 		font-size: 0;

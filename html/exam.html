@@ -5,7 +5,7 @@
 <title>用户页面</title>
 
 <link rel="stylesheet" href="css/exam.css">
-<script src="js/exam.js" ></script>
+<!-- <script src="js/exam.js" ></script> -->
 </head>
 <body>
 
@@ -14,11 +14,25 @@
 		<!-- 上层显示栏 -->
 		<div class="topLine">
 			
+			<div id="second" class="time">00</div>
+			<div class="time" style="width: 10px;">:</div>
+			<div id="minute" class="time">30</div>
+			<div class="time" style="width: 100px;">剩余时间：</div>
 		</div>
 		<div style="width: 100vw;">
 			<!-- 测试题目显示区域 -->
 			<div class="subject">
 				<div style="text-align: center;margin-top: 100px;">
+					<!-- <div id="adder11" style="display: inline-block; margin-right: -50px;">
+						<div class="box" id="box_minute11">
+							<div class="top child text" id="top11">0</div>
+							<div class="flip child" id="flip11">
+								<div class="flip_face child text" id="flip_face11">0</div>
+								<div class="flip_back child text" id="flip_back11">0</div>
+							</div>
+							<div class="bottom child text" id="bottom11">0</div>
+						</div>
+					</div> -->
 					<div id="app" style="display: inline-block; margin-left: 50px;">
 						<div class="box" id="box_minute">
 							<div class="top child text" id="top">0</div>
@@ -51,6 +65,17 @@
 							<div class="bottom child text" id="bottom2">0</div>
 						</div>
 					</div>
+
+					<!-- <div id="adder22" style="display: inline-block;">
+						<div class="box" id="box_minute22">
+							<div class="top child text" id="top22">0</div>
+							<div class="flip child" id="flip22">
+								<div class="flip_face child text" id="flip_face22">0</div>
+								<div class="flip_back child text" id="flip_back22">0</div>
+							</div>
+							<div class="bottom child text" id="bottom22">0</div>
+						</div>
+					</div> -->
 				</div>
 
 				<div class="answer">
@@ -65,22 +90,12 @@
 					答题卡
 				</div>
 				<!-- 题目显示区域 -->
-				<div class="subjectNo">
+				<div class="subjectNo" id="subjectNo">
 					<div class="sheetBlcok">
 						1
 					</div>
-					<div class="sheetBlcok">
-						2
-					</div>
-					<div class="sheetBlcok">
-						3
-					</div>
-					<div class="sheetBlcok">
-						4
-					</div>
-					<div class="sheetBlcok">
-						5
-					</div>
+					<div class="sheetBlcok" style="background-color: #850D04FF">2</div>
+					
 				</div>
 			</div>
 		</div>
@@ -112,39 +127,170 @@
     const flipBack2 = flip2.querySelector("#flip_back2");
     const Bottom2 = box_minute2.querySelector("#bottom2");
 
+    // const box_minute22 = document.querySelector("#box_minute22");
+    // const Top22 = box_minute22.querySelector("#top22");
+    // const flip22 = box_minute22.querySelector("#flip22");
+    // const flipFace22 = flip22.querySelector("#flip_face22");
+    // const flipBack22 = flip22.querySelector("#flip_back22");
+    // const Bottom22 = box_minute22.querySelector("#bottom22");
+
+    // const box_minute11 = document.querySelector("#box_minute11");
+    // const Top11 = box_minute11.querySelector("#top11");
+    // const flip11 = box_minute11.querySelector("#flip11");
+    // const flipFace11 = flip11.querySelector("#flip_face11");
+    // const flipBack11 = flip11.querySelector("#flip_back11");
+    // const Bottom11 = box_minute11.querySelector("#bottom11");
+
+    var bit = 4;
+    const box = document.querySelector(".box")
+
+
     let timer = null, timerTwo = null;
-    // 生成算数列表
     var List = [];
     var oprator = ['+','-','x','/'];
-    for (var i = 0; i <100; i++) {
-    	//确定运算符
-    	let cul = oprator[Math.floor((Math.random()*oprator.length))];
-    	let adder1 = Math.floor(Math.random()*99+10);
-    	let adder2 = Math.floor(Math.random()*99+10);
-    	let result;
-    	if(cul == '+'){
-    		result = adder1+adder2;
-    	}else if (cul == '-') {
-    		result = adder1-adder2;
-    	}else if (cul == 'x') {
-    		result = adder1*adder2;
-    	}else{
-    		adder1 = Math.floor(Math.random()*9+1);
-    		adder2 = Math.floor(Math.random()*11+1);
-    		let temp = adder2*adder1;
-    		result = adder1;
-    		adder1 = temp;
-    	}
-    	let item = {
-    		adder1:adder1,
-    		alg:cul,
-    		adder2:adder2,
-    		result:result
-    	}
-    	List.push(item);
+
+    // 生成二位算数列表
+    if(bit == 2){
+    	for (var i = 0; i <100; i++) {
+	    	//确定运算符
+	    	let cul = oprator[Math.floor((Math.random()*oprator.length))];
+	    	let adder1 = Math.floor(Math.random()*99+10);
+	    	let adder2 = Math.floor(Math.random()*99+10);
+	    	let result;
+	    	if(cul == '+'){
+	    		result = adder1+adder2;
+	    	}else if (cul == '-') {
+	    		result = adder1-adder2;
+	    	}else if (cul == 'x') {
+	    		result = adder1*adder2;
+	    	}else{
+	    		adder1 = Math.floor(Math.random()*9+1);
+	    		adder2 = Math.floor(Math.random()*11+1);
+	    		let temp = adder2*adder1;
+	    		result = adder1;
+	    		adder1 = temp;
+	    	}
+	    	let item = {
+	    		adder1:adder1,
+	    		alg:cul,
+	    		adder2:adder2,
+	    		result:result
+	    	}
+	    	List.push(item);
+	    }
     }
+    
+
+    //生成三位
+    if(bit == 3){
+    	for (var i = 0; i <1000; i++) {
+	    	//确定运算符
+	    	let cul = oprator[Math.floor((Math.random()*oprator.length))];
+	    	let adder1 = Math.floor(Math.random()*899+100);
+	    	let adder2 = Math.floor(Math.random()*899+100);
+	    	let result;
+	    	if(cul == '+'){
+	    		result = adder1+adder2;
+	    	}else if (cul == '-') {
+	    		result = adder1-adder2;
+	    	}else if (cul == 'x') {
+	    		adder2 = Math.floor(Math.random()*99+1);
+	    		result = adder1*adder2;
+	    	}else{
+	    		adder1 = Math.floor(Math.random()*89+10);
+	    		adder2 = Math.floor(Math.random()*10+1);
+	    		let temp = adder2*adder1;
+	    		result = adder1;
+	    		adder1 = temp;
+	    	}
+	    	let item = {
+	    		adder1:adder1,
+	    		alg:cul,
+	    		adder2:adder2,
+	    		result:result
+	    	}
+	    	List.push(item);
+	    }
+    }
+    
+	//生成四位
+    if(bit == 4){
+	    for (var i = 0; i <1000; i++) {
+	    	//确定运算符
+	    	let cul = oprator[Math.floor((Math.random()*oprator.length))];
+	    	let adder1 = Math.floor(Math.random()*8999+1000);
+	    	let adder2 = Math.floor(Math.random()*8999+1000);
+	    	let result;
+	    	if(cul == '+'){
+	    		result = adder1+adder2;
+	    	}else if (cul == '-') {
+	    		result = adder1-adder2;
+	    	}else if (cul == 'x') {
+	    		adder2 = Math.floor(Math.random()*99+1);
+	    		result = adder1*adder2;
+	    	}else{
+	    		adder1 = Math.floor(Math.random()*899+100);
+	    		adder2 = Math.floor(Math.random()*10+1);
+	    		let temp = adder2*adder1;
+	    		result = adder1;
+	    		adder1 = temp;
+	    	}
+	    	let item = {
+	    		adder1:adder1,
+	    		alg:cul,
+	    		adder2:adder2,
+	    		result:result
+	    	}
+	    	List.push(item);
+	    }
+    }
+    
+
+    const min = document.querySelector("#minute");
+    const sec = document.querySelector("#second");
+
+    const size = ()=>{
+    	if (bit > 2) {
+    		$("div.child").css("width","220");
+    		$("#alg .child").css("width","130");
+    	}
+    	if(bit>3){
+    		$("div.child").css("width","280");
+    		$("#alg .child").css("width","130");
+    	}
+    }
+    size();
+    //倒计时30分钟
+    const countdown = ()=>{
+    	var minute = "29";
+	    var second = 59;
+	    timerTwo = setInterval(function(){
+	    	second--;
+	    	if(second == 00 && mintue == 00){
+
+	    	};
+	    	if(second == 00){
+	    		second = 59;
+	    		minute--;
+	    		if(minute<10){
+	    			minute = "0"+minute;
+	    		};
+	    	};
+	    	if(second<10){
+	    		second = "0"+second;
+	    	}
+
+	    	min.innerHTML = minute;
+	    	sec.innerHTML = second;
+	    	console.log("1")
+	    },1000);
+
+    }
+    
+    countdown();
 
     const OneCycle = (n, timer) => { // 一次翻页的周期
+
       	let num = 0;
       	flipFace.style.zIndex = 1;
       	flipBack.style.zIndex = 0;
@@ -208,7 +354,8 @@
 
         flip2.style.transform = `perspective(500px) rotateX(-${180 * num / 50}deg)`
 
-        Top.style.backgroundColor = '#333';
+        
+        console.log(List[n].adder1[0]);
       }, 20); // 将一秒钟分成50份。
     };
 
@@ -231,12 +378,18 @@
     	if (document.getElementById("answer").value == List[index].result) {//判断结果是否正确
     		rightCount++;
     		console.log("rightCount="+rightCount);
+
     	}else{
     		console.log("wrong answer! the right answer is "+List[index].result)
     	}
       	OneCycle(index,timer);
       	index++;
       	document.getElementById('answer').value = '';
+      	if(document.getElementById("answer").value == List[index].result){
+      		document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok">'+(index+1)+'</div>';
+      	}else{
+      		document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok" style="background-color: #850D04FF">'+(index+1)+'</div>';
+      	}
     })
   </script>
 
