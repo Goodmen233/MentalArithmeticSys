@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiveonetwo.arithmetic.mapper.UserMapper">
+    <select id="selectUser" parameterType="User" resultType="User">
+        select id, username, name, password, sex, authority
+        from user
+        <where>
+            <if test="id != null">and id = #{id}</if>
+            <if test="username != null "> and username = #{username}</if>
+            <if test="name != null "> and name = #{name}</if>
+            <if test="password != null "> and password = #{password}</if>
+            <if test="sex != null "> and sex = #{sex}</if>
+            <if test="authority != null "> and authority = #{authority}</if>
+        </where>
+    </select>
+    <select id="selectTestNumById" parameterType="int" resultType="int">
+        select count(sid)
+        from score
+        where uid = #{userId}
+    </select>
+    <select id="selectAllTestScoreById" parameterType="int" resultType="score">
+        select type, num, time, timeStamp, finalScore
+        from score
+        where uid = #{userId}
+    </select>
+    <select id="selectAllTestHighScoreById" parameterType="int" resultType="score">
+        select s.sid, s.uid, s.type, s.finalScore, s.time, s.`timeStamp`, s.num
+        from score s
+        join (
+            select uid, type, max(finalScore) finalScore
+            from score
+            where uid = #{userId}
+            group by type
+        ) t
+        on t.uid = s.uid and t.type = s.type and t.finalScore = s.finalScore
+    </select>
+    <update id="updateUser" parameterType="User">
+        update user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null ">name = #{name},</if>
+            <if test="username != null ">username = #{username},</if>
+            <if test="password != null ">password = #{password},</if>
+            <if test="sex != null ">sex = #{sex},</if>
+            <if test="authority != null ">authority = #{authority},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    <insert id="insertUser" parameterType="User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null ">name,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null ">password,</if>
+            <if test="sex != null ">sex,</if>
+            <if test="authority != null ">authority,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null ">#{name},</if>
+            <if test="username != null ">#{username},</if>
+            <if test="password != null ">#{password},</if>
+            <if test="sex != null ">#{sex},</if>
+            <if test="authority != null ">#{authority},</if>
+        </trim>
+    </insert>
+</mapper>
