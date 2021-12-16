@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>用户页面</title>
@@ -35,15 +35,15 @@
 					<div class="infoBlock">
 						<div style="width: 100%;margin-top: 20px;">
 							<div class="infoLabel">用户名</div>
-							<div class="infoLabelDe">admin123</div>
+							<div class="infoLabelDe" th:text="${username}"></div>
 						</div>
 						<div style="width: 100%;margin-top: 20px;">
 							<div class="infoLabel">姓名</div>
-							<div class="infoLabelDe">啥玩意儿</div>
+							<div class="infoLabelDe" th:text="${name}"></div>
 						</div>
 						<div style="width: 100%;margin-top: 20px;">
 							<div class="infoLabel">测试总数</div>
-							<div class="infoLabelDe">99999</div>
+							<div class="infoLabelDe" th:text="${test_count}"></div>
 						</div>	
 					</div>
 					<!-- 修改个人信息按钮 -->
@@ -56,23 +56,13 @@
 								<div class="historyMaxLabel">成绩</div>
 								<div class="historyMaxLabel">时间</div>
 							</div>
-							<div class="historyMaxListTB">
-								<div class="historyMaxLabel">二位整数混合运算</div>
-								<div class="historyMaxLabel">5分钟</div>
-								<div class="historyMaxLabel">1974.08.10</div>
-							</div>
-							<div class="historyMaxListTB">
-								<div class="historyMaxLabel">二位实数混合运算</div>
-								<div class="historyMaxLabel">10分钟</div>
-								<div class="historyMaxLabel">1840.9.13</div>
-							</div>
-							<div class="historyMaxListTB">
-								<div class="historyMaxLabel">二位分数混合运算</div>
-								<div class="historyMaxLabel">19'23''</div>
-								<div class="historyMaxLabel">1976.03.14</div>
+							<div class="historyMaxListTB" th:each="score:${scores}">
+								<div class="historyMaxLabel" th:text="${score.type}"></div>
+								<div class="historyMaxLabel" th:text="${score.finalScore}"></div>
+								<div class="historyMaxLabel" th:text="${score.time}"></div>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 				<div style="margin-top: 140px;">

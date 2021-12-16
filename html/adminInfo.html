@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员页面</title>
+
+    <link rel="stylesheet" href="css/totalCss.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- 引入 Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-table.css" crossorigin="anonymous">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+</head>
+<body>
+<!-- 最外层 -->
+<div class="outer">
+    <!-- 左边菜单栏 -->
+    <div class="leftBlock">
+        <div class="leftMenu">
+            <!-- 头像 -->
+            <div class="avatar">
+
+            </div>
+            <div class="btnBlock" id="editUserBtn">修改用户信息</div>
+<!--            <div class="btnBlock">进入测试</div>-->
+            <div class="btnBlock" id="userTestBtn">用户测试信息</div>
+        </div>
+    </div>
+    <!-- 右边模块 -->
+    <div class="rightBlock">
+        <div style="position:absolute; height: 20px; width: 1120px;top: 28px;left: 375px;background-color: #ffffff;opacity: 0.6;border-radius: 20px;z-index: -1"></div>
+
+        <!-- 进入修改用户信息模块模块 -->
+        <div class="rightMask" id="editUserBlock" style="display: block;">
+            <div style="height: 20px;"></div>
+            <div id="mask" class="mask" ></div>
+            <table  id="bs-table" style="z-index: -1">
+            </table>
+
+            <div class="popBox" id="popbox" style="display: none">
+                <form >
+                    <div class="userRow">
+                        <label style="margin-left: 10px">用户ID</label>
+                        <input type="text" id="show_user_id"  name="user_id" class="input" style="margin-left: 30px" disabled/>
+                    </div>
+                    <input type="hidden" id="user_id"  name="user_id" class="input"/>
+                    <div class="userRow">
+                        <label style="margin-left: 10px">用户名&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" id="user_username" name="user_username" class="input"/>
+                    </div>
+                    <div class="userRow">
+                        <label style="margin-left: 10px">姓&nbsp;&nbsp;&nbsp;名</label>
+                        <input type="text" id="user_name" name="user_name"  class="input" style="margin-left: 30px"/>
+                    </div>
+                    <div class="userRow">
+                        <label style="margin-left: 10px">密&nbsp;&nbsp;&nbsp;码</label>
+                        <input type="text" id="user_password" name="user_password" class="input" style="margin-left: 30px"/>
+                    </div>
+                    <div class="userRow">
+                        <label style="margin-left: 10px">性&nbsp;&nbsp;&nbsp;别</label>
+                        <input type="text" id="user_sex" name="user_sex" class="input" style="margin-left: 30px"/>
+                    </div>
+                    <div class="userRow">
+                        <label style="margin-left: 10px">权&nbsp;&nbsp;&nbsp;限</label>
+                        <input type="text" id="user_authority" name="user_authority" class="input" style="margin-left: 30px"/>
+                    </div>
+                    <input type="submit" value="修改" class="btns" />
+                </form>
+            </div>
+        </div>
+        <!--    用户测试信息    -->
+        <div class="rightMask" id="userTestBlock" style="display: block;">
+            <div style="height: 20px;"></div>
+            <table  id="bs-test" >
+                <tr>
+                    <th data-field="sid" align="center" data-sortable=true >测试序号</th>
+                    <th data-field="uid" align="center" data-sortable=true >用户ID</th>
+                    <th data-field="username" align="center" >用户名</th>
+                    <th data-field="name" align="center" >姓名</th>
+                    <th data-field="type" align="center" data-sortable=true >类型</th>
+                    <th data-field="num" align="center" data-sortable=true >成绩</th>
+                    <th data-field="time" align="center" data-sortable=true >时间</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/index.js"></script>
+<!-- 【远程】直接实用远程的bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+<!-- Latest compiled and minified Locales -->
+<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

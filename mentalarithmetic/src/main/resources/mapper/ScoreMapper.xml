@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiveonetwo.arithmetic.mapper.ScoreMapper">
+    <insert id="insertScore">
+        insert into score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null ">uid,</if>
+            <if test="type != null">type,</if>
+            <if test="num != null ">num,</if>
+            <if test="time != null ">time,</if>
+            <if test="timeStamp != null ">timeStamp,</if>
+            <if test="finalScore != null ">finalScore,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null ">#{uid},</if>
+            <if test="type != null ">#{type},</if>
+            <if test="num != null ">#{num},</if>
+            <if test="time != null ">#{time},</if>
+            <if test="timeStamp != null ">#{timeStamp},</if>
+            <if test="finalScore != null ">#{finalScore},</if>
+        </trim>
+    </insert>
+    <select id="selectScore" parameterType="Score" resultType="Score">
+        select sid, uid, type, num, time, timeStamp, finalScore
+        from score
+        <where>
+            <if test="sid != null">and sid = #{sid}</if>
+            <if test="uid != null "> and uid = #{uid}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="num != null "> and num = #{num}</if>
+            <if test="time != null "> and time = #{time}</if>
+            <if test="timeStamp != null "> and timeStamp = #{timeStamp}</if>
+            <if test="finalScore != null "> and finalScore = #{finalScore}</if>
+        </where>
+    </select>
+    <select id="getAvgScore" resultType="Score">
+        select type, avg(finalScore) finalScore
+        from score
+        group by type
+    </select>
+</mapper>
