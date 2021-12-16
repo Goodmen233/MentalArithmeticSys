@@ -1,6 +1,6 @@
 $(function(){
-
-	onload();
+	var userId = $("#userId").val();
+	console.log(userId);
 
 	$("#userInfoBtn").click(function(){
 		$("#userInfoBlock").show();
@@ -13,30 +13,35 @@ $(function(){
 		$("#historyBlock").hide();
 	})
 	$("#historyInfoBtn").click(function(){
-		$("#examBlock").hide();
-		$("#userInfoBlock").hide();
-		$("#historyBlock").show();
-		var historyList = [{
-			type:"二位整数十分钟测试",
-			score:"正确100题",
-			time:"2021.12.09 11:04:34"
-		},{
-			type:"二位整数十分钟测试",
-			score:"正确100题",
-			time:"2021.12.09 11:04:34"
-		},{
-			type:"二位整数十分钟测试",
-			score:"正确100题",
-			time:"2021.12.09 11:04:34"
-		}];
-		console.log("begin");
-		for(let i in historyList){
-			console.log("in");
-			console.log(i);
-			let div1 = '<div class="historyLabelDiv">'+'<span class="historyLabel">'+historyList[i].type+'</span>'+'<span class="historyLabel">'+historyList[i].score+'</span>'+'<span class="historyLabel" style="width: 250px;">'+historyList[i].time+'</span>'+'</div>';
-			$("#historyList").append(div1);
-			
-		}
+		var historyList = [];
+		$.ajax({
+			url:'/getAllScore',
+			data:{
+				userId:userId
+			},
+			// dataType:"json",
+			success:function(data){
+				console.log(data)
+				for(let item=0;item<data.length;item++){
+					let li = {
+						type:data[item].type,
+						score:data[item].finalScore,
+						time:data[item].time
+					}
+					console.log(li);
+					historyList.push(li);
+				}
+
+				$("#examBlock").hide();
+				$("#userInfoBlock").hide();
+				$("#historyBlock").show();
+				for(let i in historyList){
+					let div1 = '<div class="historyLabelDiv">'+'<span class="historyLabel">'+historyList[i].type+'</span>'+'<span class="historyLabel">'+historyList[i].score+'</span>'+'<span class="historyLabel" style="width: 250px;">'+historyList[i].time+'</span>'+'</div>';
+					$("#historyList").append(div1);
+				}
+			}
+		})
+
 	})
 
 	// 修改个人信息点击事件
@@ -58,5 +63,5 @@ function onload(){
 	$("#userInfoBlock").show();
 	$("#examBlock").hide();
 	$("#historyBlock").hide();
-	console.log("onload");
 }
+

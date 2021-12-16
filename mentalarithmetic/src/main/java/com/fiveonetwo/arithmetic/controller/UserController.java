@@ -1,15 +1,18 @@
 package com.fiveonetwo.arithmetic.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fiveonetwo.arithmetic.entity.Score;
 import com.fiveonetwo.arithmetic.service.UserService;
 import com.fiveonetwo.arithmetic.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import sun.awt.ModalExclude;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +27,29 @@ public class UserController {
         return "index";
     }
 
+    @RequestMapping(value = "/exam",method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView getExam(HttpServletRequest request){
+        ModelAndView mav = new ModelAndView();
+        String bit = request.getParameter("digit");
+        String type = request.getParameter("type");
+        String modal = request.getParameter("modal");
+        mav.setViewName("exam");
+        mav.addObject("bit",bit);
+        mav.addObject("type",type);
+        mav.addObject("modal",modal);
+
+        System.out.println("bit="+bit+" type="+type+" modal"+modal);
+        return mav;
+    }
+
 //    个人信息
 //    in：账号密码 out：用户名、姓名、测试总数、各个类型测试的最高分列表（类型、成绩、时间）/=》最近一次的游戏类型及分数
     @PostMapping("/login")
     @ResponseBody
-    public Map<String, Object> getUserInfo(String username, String password){
+    public ModelAndView getUserInfo(String username, String password, HttpSession session){
+        //页面跳转对象
+        ModelAndView mav = new ModelAndView();
+
         Map<String, Object> map = new HashMap<>();
         User user = new User();
         user.setUsername(username);
@@ -37,7 +58,9 @@ public class UserController {
         List<User> users = userService.selectUser(user);
         // 如果返回的用户对象的id为null，表示用户名或者密码错误，直接返回
         if(users.size() == 0){
-            return map;
+            mav.setViewName("index");
+            mav.addObject("errormessage",0);
+            return mav;
         }
         Integer userId = users.get(0).getId();
         // 测试总数
@@ -47,7 +70,12 @@ public class UserController {
         map.put("user", users.get(0));
         map.put("testNum", testNum);
         map.put("scores", scores);
-        return map;
+        JSONObject json = JSONObject.parseObject(JSON.toJSONString(map));
+        session.setAttribute("userId", user.getId());
+        mav.setViewName("userInfo");
+        mav.addObject("userInfo",json);
+        System.out.println(map);
+        return mav;
     }
 
 //    历史测试信息

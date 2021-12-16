@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>用户页面</title>
 
-<link rel="stylesheet" href="../static/css/exam.css">
+<link rel="stylesheet" th:href="@{/css/exam.css}">
 <!-- <script src="js/exam.js" ></script> -->
 </head>
 <body>
@@ -81,9 +81,9 @@
 		
 	</div>
 
-<script src="../static/js/jquery.min.js"></script>
-<script src="../static/js/userInfo.js"></script>
-<script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/userInfo.js}"></script>
+<script th:inline="javascript">
     // 获取Dom
     const box_minute = document.querySelector("#box_minute");
     const Top = box_minute.querySelector("#top");
@@ -107,8 +107,9 @@
     const Bottom2 = box_minute2.querySelector("#bottom2");
 
     var userId = 1;//用户id
-    var bit = 2;//位数
-    var type = 3;//测试类型
+    var bit = [[${bit}]];//位数
+    var modal = [[${modal}]];//测试类型
+	var type = [[${type}]];
     var timeStamp;//测试时间戳
     var minute;
     var second;
@@ -119,6 +120,8 @@
     let timer = null, timerTwo = null;
     var List = [];
     var oprator = ['+','-','x','/'];
+
+	console.log("bit="+bit+" type="+type+" modal="+modal);
 
     // 生成二位算数列表
     if(bit == 2){
@@ -546,6 +549,9 @@
       		document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok" style="background-color: #850D04FF">'+(index+1)+'</div>';
       	}
     })
+
+
+
   </script>
 
 </body>
