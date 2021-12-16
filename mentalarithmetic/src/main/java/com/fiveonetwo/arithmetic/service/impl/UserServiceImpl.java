@@ -5,6 +5,7 @@ import com.fiveonetwo.arithmetic.entity.User;
 import com.fiveonetwo.arithmetic.mapper.ScoreMapper;
 import com.fiveonetwo.arithmetic.mapper.UserMapper;
 import com.fiveonetwo.arithmetic.service.UserService;
+import com.fiveonetwo.arithmetic.util.TypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,13 +33,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Score> selectAllTestScoreById(Integer userId) {
-        return userMapper.selectAllTestScoreById(userId);
+        List<Score> scores =  userMapper.selectAllTestScoreById(userId);
+        return TypeUtil.typeFormat(scores);
     }
 
     @Override
     public List<Score> selectAllTestHighScoreById(Integer userId) {
         List<Score> scores = userMapper.selectAllTestHighScoreById(userId);
-        return scores;
+        return TypeUtil.typeFormat(scores);
     }
 
     @Override

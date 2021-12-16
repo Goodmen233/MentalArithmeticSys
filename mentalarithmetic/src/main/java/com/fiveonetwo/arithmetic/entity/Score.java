@@ -12,6 +12,8 @@ public class Score {
 
     private Integer type;
 
+    private String typeName;
+
     private Integer num;
 
     private Integer timeStamp;

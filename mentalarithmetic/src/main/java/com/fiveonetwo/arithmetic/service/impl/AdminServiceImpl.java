@@ -5,6 +5,7 @@ import com.fiveonetwo.arithmetic.entity.User;
 import com.fiveonetwo.arithmetic.mapper.ScoreMapper;
 import com.fiveonetwo.arithmetic.mapper.UserMapper;
 import com.fiveonetwo.arithmetic.service.AdminService;
+import com.fiveonetwo.arithmetic.util.TypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,11 +36,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Score> getAllUserScore() {
-        return scoreMapper.selectScore(new Score());
+        return TypeUtil.typeFormat(scoreMapper.selectScore(new Score()));
     }
 
     @Override
     public List<Score> getAvgScore() {
-        return scoreMapper.getAvgScore();
+        return TypeUtil.typeFormat(scoreMapper.getAvgScore());
     }
 }
