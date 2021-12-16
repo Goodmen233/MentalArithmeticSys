@@ -23,16 +23,6 @@
 			<!-- 测试题目显示区域 -->
 			<div class="subject">
 				<div style="text-align: center;margin-top: 100px;">
-					<!-- <div id="adder11" style="display: inline-block; margin-right: -50px;">
-						<div class="box" id="box_minute11">
-							<div class="top child text" id="top11">0</div>
-							<div class="flip child" id="flip11">
-								<div class="flip_face child text" id="flip_face11">0</div>
-								<div class="flip_back child text" id="flip_back11">0</div>
-							</div>
-							<div class="bottom child text" id="bottom11">0</div>
-						</div>
-					</div> -->
 					<div id="app" style="display: inline-block; margin-left: 50px;">
 						<div class="box" id="box_minute">
 							<div class="top child text" id="top">0</div>
@@ -65,17 +55,6 @@
 							<div class="bottom child text" id="bottom2">0</div>
 						</div>
 					</div>
-
-					<!-- <div id="adder22" style="display: inline-block;">
-						<div class="box" id="box_minute22">
-							<div class="top child text" id="top22">0</div>
-							<div class="flip child" id="flip22">
-								<div class="flip_face child text" id="flip_face22">0</div>
-								<div class="flip_back child text" id="flip_back22">0</div>
-							</div>
-							<div class="bottom child text" id="bottom22">0</div>
-						</div>
-					</div> -->
 				</div>
 
 				<div class="answer">
@@ -127,23 +106,15 @@
     const flipBack2 = flip2.querySelector("#flip_back2");
     const Bottom2 = box_minute2.querySelector("#bottom2");
 
-    // const box_minute22 = document.querySelector("#box_minute22");
-    // const Top22 = box_minute22.querySelector("#top22");
-    // const flip22 = box_minute22.querySelector("#flip22");
-    // const flipFace22 = flip22.querySelector("#flip_face22");
-    // const flipBack22 = flip22.querySelector("#flip_back22");
-    // const Bottom22 = box_minute22.querySelector("#bottom22");
-
-    // const box_minute11 = document.querySelector("#box_minute11");
-    // const Top11 = box_minute11.querySelector("#top11");
-    // const flip11 = box_minute11.querySelector("#flip11");
-    // const flipFace11 = flip11.querySelector("#flip_face11");
-    // const flipBack11 = flip11.querySelector("#flip_back11");
-    // const Bottom11 = box_minute11.querySelector("#bottom11");
-
-    var bit = 4;
+    var userId = 1;//用户id
+    var bit = 2;//位数
+    var type = 3;//测试类型
+    var timeStamp;//测试时间戳
+    var minute;
+    var second;
+    var rightCount = 0;//答对的题数
+    var maxRightCount = 3;//需要答对的题目数量
     const box = document.querySelector(".box")
-
 
     let timer = null, timerTwo = null;
     var List = [];
@@ -260,35 +231,169 @@
     	}
     }
     size();
-    //倒计时30分钟
-    const countdown = ()=>{
-    	var minute = "29";
-	    var second = 59;
-	    timerTwo = setInterval(function(){
-	    	second--;
-	    	if(second == 00 && mintue == 00){
 
-	    	};
-	    	if(second == 00){
-	    		second = 59;
-	    		minute--;
-	    		if(minute<10){
-	    			minute = "0"+minute;
-	    		};
-	    	};
-	    	if(second<10){
-	    		second = "0"+second;
-	    	}
+    //类型1（固定时间，答对题目越多成绩越高）
+    if(type == 1){
+    	//倒计时30分钟
+	    const countdown = ()=>{
+	    	minute = "00";
+		    second = 5;
 
-	    	min.innerHTML = minute;
-	    	sec.innerHTML = second;
-	    	console.log("1")
-	    },1000);
+		    timerTwo = setInterval(function(){
+		    	if(minute == "00" && second == "01"){
+			    	clearInterval(timerTwo);
+			    	setTimeout("alert('时间到，答题结束！')",3000);
+			    	//发送请求
+			    	$.ajax({
+			    		url:"uploadScore",
+			    		data:{
+			    			userId:userId,
+			    			type:type,
+			    			rightCount:rightCount,
+			    			timeStamp:1800000
+			    		},
+			    		type:"POST",
+			    		dataType:"json",
+			    		success:function(data){
+			    			console.log(data);
+			    			//跳转到首页
+			    			window.location.href="userInfo.html";
+			    		}
 
+			    	})
+			    }else{
+			    	second--;
+		    		if(second == 00){
+			    		second = 59;
+			    		minute--;
+			    		if(minute<10){
+			    			minute = "0"+minute;
+			    		};
+			    	};
+			    	if(second<10){
+			    		second = "0"+second;
+			    	}
+
+			    	min.innerHTML = minute;
+			    	sec.innerHTML = second;
+			    	console.log("1");
+			    	console.log(minute);
+			    	console.log(second);
+			    }
+		    },1000);
+
+
+	    }
+	    countdown();
     }
     
-    countdown();
+    //类型2（固定题目数量，答对题目越多且用时越少成绩越高）
+    else if(type == 2){
+    	let max = 20;
+    	//设置时间
+    	var countTime = ()=>{
+    		minute = "00";
+    		second = "00";
+    		timerTwo = setInterval(function(){
+    			if(minute == "60"){
+    				clearInterval(timerTwo);
+    				setTimeout('alert("测试超时，强制交卷！")',3000);
+    				$.ajax({
+    					url:"uploadScore",
+			    		data:{
+			    			userId:userId,
+			    			type:type,
+			    			rightCount:rightCount,
+			    			timeStamp:3600000
+			    		},
+			    		type:"POST",
+			    		dataType:"json",
+			    		success:function(data){
+			    			console.log(data);
+			    			//跳转到首页
+			    			window.location.href="userInfo.html";
+			    		}
+    				})
+    			}
+    			else{
+    				second++;
+    				if(second == 59){
+    					second = "00";
+    					minute++;
+    					if(minute<10){
+    						minute = "0"+minute;
+    					};
+    					if(second<10){
+    						second = "0"+second;
+    					}
 
+    					min.innerHTML = minute;
+    					sec.innerHTML = second;
+    					console.log("2");
+    					console.log(minute);
+    					console.log(second);
+    				}
+    			}
+
+    		},1000);
+    	}
+    	countTime();
+    }
+
+    //类型3（固定需要答对题目的数量，用时越少分数越高）
+    else if(type == 3){
+    	maxRightCount = 3;//需要答对的题目数量
+    	//计时
+    	let countTime = ()=>{
+    		minute = "00";
+    		second = 0;
+    		timerTwo = setInterval(function(){
+    			if(minute >= "60"){
+    				clearInterval(timerTwo);
+    				setTimeout('alert("测试超时，强制交卷！")',3000);
+    				$.ajax({
+    					url:"uploadScore",
+			    		data:{
+			    			userId:userId,
+			    			type:type,
+			    			rightCount:rightCount,
+			    			timeStamp:3600000
+			    		},
+			    		type:"POST",
+			    		dataType:"json",
+			    		success:function(data){
+			    			console.log(data);
+			    			//跳转到首页
+			    			window.location.href="userInfo.html";
+			    		}
+    				})
+    			}else{
+    				second++;
+    				if(second == 59){
+    					second = 00;
+    					minute++;
+    					if(minute<10){
+							minute = "0"+minute;
+						};
+    				}
+    				
+					if(second<10){
+						second = "0"+second;
+					}
+    				min.innerHTML = minute;
+					sec.innerHTML = second;
+					console.log("3");
+					console.log(minute);
+					console.log(second);
+    				console.log("end");
+    			}
+    		},1000)
+    	}
+    	countTime();
+    }
+
+
+    //题目刷新js
     const OneCycle = (n, timer) => { // 一次翻页的周期
 
       	let num = 0;
@@ -371,13 +476,62 @@
       	}
     }
 
+    //已经做过的题目的数量（list数组下标）
     var index = 0;
-    var rightCount = 0;
-    //按钮点击事件
+    //下一题按钮点击事件
     $("#change").click(function(){
+
     	if (document.getElementById("answer").value == List[index].result) {//判断结果是否正确
     		rightCount++;
     		console.log("rightCount="+rightCount);
+    		if(type == 2){
+    			if(index == 19){
+    				timeStamp = 1000*second+60000*minute;
+    				console.log(timeStamp);
+    				setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
+    				$.ajax({
+    					url:"uploadScore",
+			    		data:{
+			    			userId:userId,
+			    			type:type,
+			    			rightCount:rightCount,
+			    			timeStamp:timeStamp
+			    		},
+			    		type:"POST",
+			    		dataType:"json",
+			    		success:function(data){
+			    			console.log(data);
+			    			//跳转到首页
+			    			window.location.href="userInfo.html";
+			    		}
+    				})
+    			}
+    		}
+    		else if(type == 3){
+    			if(rightCount == maxRightCount){
+    				clearInterval(countTime);
+    				timeStamp = 1000*second+60000*minute;
+    				console.log(timeStamp);
+    				setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
+    				$.ajax({
+    					url:"uploadScore",
+			    		data:{
+			    			userId:userId,
+			    			type:type,
+			    			rightCount:rightCount,
+			    			timeStamp:timeStamp
+			    		},
+			    		type:"POST",
+			    		dataType:"json",
+			    		success:function(data){
+			    			console.log(data);
+			    			//跳转到首页
+			    			window.location.href="userInfo.html";
+			    		}
+    				})
+    			}
+    		}
+
 
     	}else{
     		console.log("wrong answer! the right answer is "+List[index].result)
@@ -385,6 +539,7 @@
       	OneCycle(index,timer);
       	index++;
       	document.getElementById('answer').value = '';
+      	//结果正确则在答题卡中显示正确的颜色，错误则显示错误的颜色
       	if(document.getElementById("answer").value == List[index].result){
       		document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok">'+(index+1)+'</div>';
       	}else{

@@ -179,6 +179,7 @@ body{
 	left: 600px;
 	top: 130px;
 	background-color: #ffffff;
+	display: none;
 }
 
 .alterInfoForm{

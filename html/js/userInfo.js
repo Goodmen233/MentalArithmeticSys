@@ -39,7 +39,21 @@ $(function(){
 		}
 	})
 
+	// 修改个人信息点击事件
+	$("#alterBtn").click(function(){
+		console.log("sfs");
+		$(".alterInfoBlock").css('display','block');
+		$(".mask").show();
+	})
+
+	//点击蒙版
+	$(".mask").click(function(){
+		$(".alterInfoBlock").css('display','none');
+		$(".mask").hide();
+	})
+
 })
+
 function onload(){
 	$("#userInfoBlock").show();
 	$("#examBlock").hide();

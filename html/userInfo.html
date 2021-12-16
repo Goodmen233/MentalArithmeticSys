@@ -47,7 +47,7 @@
 						</div>	
 					</div>
 					<!-- 修改个人信息按钮 -->
-					<div class="alterInfo">修改个人信息</div>
+					<div class="alterInfo" id="alterBtn" onclick="">修改个人信息</div>
 					<!-- 历史记录表单 -->
 					<div class="scroll">
 						<div style="width: 90%;word-break:break-all; margin-left: 30px;margin-top: 15px;">
@@ -80,7 +80,7 @@
 				</div>
 
 				<!-- 修改个人信息模块 -->
-				<div class="alterInfoBlock" hidden="True">
+				<div class="alterInfoBlock">
 					<div class="alterInfoTitle">
 						修改个人信息
 					</div>
@@ -128,7 +128,7 @@
 					<input type="radio" name="modal" id="m3" hidden><label for="m3" class="radioStyle">正确一百题</label>
 				</div>
 				<div style="width: 100%;display: flex; justify-content: center;">
-					<div class="beginBtn">开始测试</div>
+					<div class="beginBtn" onclick="beginTest()">开始测试</div>
 				</div>
 				
 			</div>
