@@ -117,6 +117,7 @@
     var maxRightCount = 3;//需要答对的题目数量
     const box = document.querySelector(".box")
 
+	var allType = type+""+bit+""+modal
     let timer = null, timerTwo = null;
     var List = [];
     var oprator = ['+','-','x','/'];
@@ -248,19 +249,19 @@
 			    	setTimeout("alert('时间到，答题结束！')",3000);
 			    	//发送请求
 			    	$.ajax({
-			    		url:"uploadScore",
+			    		url:"/uploadScore",
 			    		data:{
-			    			userId:userId,
-			    			type:type,
-			    			rightCount:rightCount,
-			    			timeStamp:1800000
+			    			'userId':userId,
+			    			'type':allType,
+			    			'rightCount':rightCount,
+			    			'timeStamp':1800000
 			    		},
 			    		type:"POST",
 			    		dataType:"json",
 			    		success:function(data){
-			    			console.log(data);
+			    			console.log("结果："+data);
 			    			//跳转到首页
-			    			window.location.href="userInfo.html";
+			    			self.location = document.referrer;
 			    		}
 
 			    	})
@@ -302,12 +303,12 @@
     				clearInterval(timerTwo);
     				setTimeout('alert("测试超时，强制交卷！")',3000);
     				$.ajax({
-    					url:"uploadScore",
+    					url:"/uploadScore",
 			    		data:{
-			    			userId:userId,
-			    			type:type,
-			    			rightCount:rightCount,
-			    			timeStamp:3600000
+			    			'userId':userId,
+			    			'type':allType,
+			    			'rightCount':rightCount,
+			    			'timeStamp':3600000
 			    		},
 			    		type:"POST",
 			    		dataType:"json",
@@ -355,12 +356,12 @@
     				clearInterval(timerTwo);
     				setTimeout('alert("测试超时，强制交卷！")',3000);
     				$.ajax({
-    					url:"uploadScore",
+    					url:"/uploadScore",
 			    		data:{
-			    			userId:userId,
-			    			type:type,
-			    			rightCount:rightCount,
-			    			timeStamp:3600000
+			    			'userId':userId,
+			    			'type':allType,
+			    			'rightCount':rightCount,
+			    			'timeStamp':3600000
 			    		},
 			    		type:"POST",
 			    		dataType:"json",
@@ -493,12 +494,12 @@
     				console.log(timeStamp);
     				setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
     				$.ajax({
-    					url:"uploadScore",
+    					url:"/uploadScore",
 			    		data:{
-			    			userId:userId,
-			    			type:type,
-			    			rightCount:rightCount,
-			    			timeStamp:timeStamp
+			    			'userId':userId,
+			    			'type':allType,
+			    			'rightCount':rightCount,
+			    			'timeStamp':timeStamp
 			    		},
 			    		type:"POST",
 			    		dataType:"json",
@@ -517,12 +518,12 @@
     				console.log(timeStamp);
     				setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
     				$.ajax({
-    					url:"uploadScore",
+    					url:"/uploadScore",
 			    		data:{
-			    			userId:userId,
-			    			type:type,
-			    			rightCount:rightCount,
-			    			timeStamp:timeStamp
+			    			'userId':userId,
+			    			'type':allType,
+			    			'rightCount':rightCount,
+			    			'timeStamp':timeStamp
 			    		},
 			    		type:"POST",
 			    		dataType:"json",

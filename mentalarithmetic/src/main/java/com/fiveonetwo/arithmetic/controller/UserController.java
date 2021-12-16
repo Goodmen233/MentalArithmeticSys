@@ -22,6 +22,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    private User user;
+
     @GetMapping("/")
     public String getIndex(){
         return "index";
@@ -55,7 +57,7 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
 
         Map<String, Object> map = new HashMap<>();
-        User user = new User();
+        user = new User();
         user.setUsername(username);
         user.setPassword(password);
         // 获取用户信息
@@ -98,14 +100,14 @@ public class UserController {
 //    上传测试结果信息
 //    in：用户id、测试类型、成绩（结果）、时间 out：1 or -1
     @PostMapping("/uploadScore")
-    @ResponseBody
-    public int uploadScore(Integer userId, Integer type, Integer rightCount, Integer timeStamp){
+    public ModelAndView uploadScore(Integer userId, Integer type, Integer rightCount, Integer timeStamp){
         Score score = new Score();
         score.setUid(userId);
         score.setType(type);
         score.setNum(rightCount);
         score.setTimeStamp(timeStamp);
-        return userService.insertScore(score);
+        userService.insertScore(score);
+        return getUserInfo(user.getUsername(),user.getPassword());
     }
 
 //    修改个人信息
