@@ -7,7 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/exam.css}">
 <!-- <script src="js/exam.js" ></script> -->
 </head>
-<body>
+<body id="main">
 
 	<!-- 最外层div -->
 	<div>
@@ -84,6 +84,7 @@
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/userInfo.js}"></script>
 <script th:inline="javascript">
+	var ctx = [[${#httpServletRequest.getContextPath()}]];
     // 获取Dom
     const box_minute = document.querySelector("#box_minute");
     const Top = box_minute.querySelector("#top");
@@ -246,7 +247,7 @@
 		    timerTwo = setInterval(function(){
 		    	if(minute == "00" && second == "01"){
 			    	clearInterval(timerTwo);
-			    	setTimeout("alert('时间到，答题结束！')",3000);
+			    	// setTimeout("alert('时间到，答题结束！')",3000);
 			    	//发送请求
 			    	$.ajax({
 			    		url:"/uploadScore",
@@ -257,11 +258,11 @@
 			    			'timeStamp':1800000
 			    		},
 			    		type:"POST",
-			    		dataType:"json",
 			    		success:function(data){
-			    			console.log("结果："+data);
+			    			// console.log("结果："+data);
+							alert("时间到，考试结束");
 			    			//跳转到首页
-			    			self.location = document.referrer;
+							window.location.href = ctx + "/";
 			    		}
 
 			    	})

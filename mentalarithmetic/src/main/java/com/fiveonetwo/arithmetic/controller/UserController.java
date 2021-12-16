@@ -22,10 +22,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private User user;
-
     @GetMapping("/")
-    public String getIndex(){
+    public String getIndex(HttpSession session){
+        if(session.getAttribute("user") != null){
+            return "userInfo";
+        }
         return "index";
     }
 
@@ -52,12 +53,10 @@ public class UserController {
      */
     @PostMapping("/login")
     @ResponseBody
-    public ModelAndView getUserInfo(String username, String password){
+    public ModelAndView getUserInfo(String username, String password, HttpSession session){
         //页面跳转对象
         ModelAndView mav = new ModelAndView();
-
-        Map<String, Object> map = new HashMap<>();
-        user = new User();
+        User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         // 获取用户信息
@@ -74,18 +73,15 @@ public class UserController {
             mav.setViewName("adminInfo");
             return mav;
         }
-        Integer userId = users.get(0).getId();
+        Integer userId = user.getId();
         // 测试总数
         int testNum = userService.selectTestNumById(userId);
         // 各个类型测试的最高分
         List<Score> scores = userService.selectAllTestHighScoreById(userId);
-        map.put("user", users.get(0));
-        map.put("testNum", testNum);
-        map.put("scores", scores);
-        JSONObject json = JSONObject.parseObject(JSON.toJSONString(map));
         mav.setViewName("userInfo");
-        mav.addObject("userInfo",json);
-        System.out.println(map);
+        session.setAttribute("user", user);
+        session.setAttribute("testNum", testNum);
+        session.setAttribute("scores", scores);
         return mav;
     }
 
@@ -100,14 +96,14 @@ public class UserController {
 //    上传测试结果信息
 //    in：用户id、测试类型、成绩（结果）、时间 out：1 or -1
     @PostMapping("/uploadScore")
-    public ModelAndView uploadScore(Integer userId, Integer type, Integer rightCount, Integer timeStamp){
+    @ResponseBody
+    public int uploadScore(Integer userId, Integer type, Integer rightCount, Integer timeStamp){
         Score score = new Score();
         score.setUid(userId);
         score.setType(type);
         score.setNum(rightCount);
         score.setTimeStamp(timeStamp);
-        userService.insertScore(score);
-        return getUserInfo(user.getUsername(),user.getPassword());
+        return userService.insertScore(score);
     }
 
 //    修改个人信息

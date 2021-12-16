@@ -8,7 +8,7 @@
 
 </head>
 <body onload="onload()">
-<input type="hidden" id="userId" style="display: none;" th:value = "${userInfo.user.id}">
+<input type="hidden" id="userId" style="display: none;" th:value = "${session.user.id}">
 	<!-- 最外层 -->
 	<div class="outer">
 		<div class="mask" hidden="True"></div>
@@ -36,15 +36,15 @@
 					<div class="infoBlock">
 						<div style="width: 100%;margin-top: 20px;">
 							<div class="infoLabel">用户名</div>
-							<div class="infoLabelDe" th:text="${userInfo.user.username}"></div>
+							<div class="infoLabelDe" th:text="${session.user.username}"></div>
 						</div>
 						<div style="width: 100%;margin-top: 20px;">
 							<div class="infoLabel">姓名</div>
-							<div class="infoLabelDe" th:text="${userInfo.user.name}"></div>
+							<div class="infoLabelDe" th:text="${session.user.name}"></div>
 						</div>
 						<div style="width: 100%;margin-top: 20px;">
 							<div class="infoLabel">测试总数</div>
-							<div class="infoLabelDe" th:text="${userInfo.testNum}"></div>
+							<div class="infoLabelDe" th:text="${session.testNum}"></div>
 						</div>	
 					</div>
 					<!-- 修改个人信息按钮 -->
@@ -57,7 +57,7 @@
 								<div class="historyMaxLabel">成绩</div>
 								<div class="historyMaxLabel">时间</div>
 							</div>
-							<div class="historyMaxListTB" th:each="score:${userInfo.scores}">
+							<div class="historyMaxListTB" th:each="score:${session.scores}">
 								<div class="historyMaxLabel" th:text="${score.type}"></div>
 								<div class="historyMaxLabel" th:text="${score.finalScore}"></div>
 								<div class="historyMaxLabel" th:text="${#dates.format(score.time, 'yyyy-MM-dd HH:mm:ss')}"></div>
