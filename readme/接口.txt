@@ -49,8 +49,7 @@ in：用户id、用户名、姓名、密码、性别、权限 out：1 or -1
 --
 请求地址：/updateUser
 传参：userId, username, name, password, sex, authority
-返回：1 or -1
-注：用户名唯一！否则返回-1
+返回：修改成功或失败字符串提示
 
 用户测试信息
 out：测试序号、用户id、用户名、姓名、类型、成绩、时间

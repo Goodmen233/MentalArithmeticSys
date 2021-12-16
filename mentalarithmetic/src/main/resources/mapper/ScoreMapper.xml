@@ -23,8 +23,10 @@
         </trim>
     </insert>
     <select id="selectScore" parameterType="Score" resultType="Score">
-        select sid, uid, type, num, time, timeStamp, finalScore
-        from score
+        select s.sid, s.uid, u.username, u.name, s.type, s.num, s.time, s.timeStamp, s.finalScore
+        from score s
+        join user u
+        on u.id = s.uid
         <where>
             <if test="sid != null">and sid = #{sid}</if>
             <if test="uid != null "> and uid = #{uid}</if>

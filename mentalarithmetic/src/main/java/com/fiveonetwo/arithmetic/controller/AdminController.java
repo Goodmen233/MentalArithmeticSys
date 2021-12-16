@@ -36,19 +36,30 @@ public class AdminController {
 //    in：用户id、用户名、姓名、密码、性别、权限 out：1 or -1
     @PostMapping("/updateUser")
     @ResponseBody
-    public int updateUser(int userId, String username, String name, String password, Boolean sex, Boolean authority){
-        // 先判断用户名是否唯一
+    public String updateUser(int userId, String username, String name, String password, Boolean sex, Boolean authority){
+        // 先判断用户名是否已经存在
         User user = new User();
         user.setUsername(username);
-        if(adminService.selectUser(user).size() != 0){
-            return -1;
+        List<User> users = adminService.selectUser(user);
+        // 如果用户名存在
+        if(users.size() != 0){
+            User user0 = users.get(0);// 获取当前用户名的用户
+            // 如果用户名和姓名不一致则判断是用户名重名，修改失败
+            if(! name.equals(user0.getName())){
+                return "用户名已存在，请重新修改";
+            }
         }
         user.setId(userId);
         user.setPassword(password);
         user.setName(name);
         user.setSex(sex);
         user.setAuthority(authority);
-        return adminService.updateUser(user);
+        int i = adminService.updateUser(user);
+        if(i == 1){
+            return "修改成功";
+        }else{
+            return "修改失败，请重试";
+        }
     }
 
 //    用户测试信息

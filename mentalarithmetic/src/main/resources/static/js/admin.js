@@ -5,17 +5,15 @@ function addFunctionAlty(value, row, index) {
 }
 window.operateEvents = {
     'click #TableEditor': function (e, value, row, index) {
-        // console.log(row.id);
-        // console.log(row.institute);
         $("#mask").show();
         $("#popbox").show();
         $("#show_user_id").val( row.id );   //将前台数据放在隐藏页中
-        $("#user_id").val( row.id );
-        $("#user_username").val( row.username );
-        $("#user_name").val( row.name );
-        $("#user_password").val(row.password)
-        $("#user_sex").val( row.sex );
-        $("#user_authority").val( row.authority );
+        $("#userId").val( row.id );
+        $("#username").val( row.username );
+        $("#name").val( row.name );
+        $("#password").val(row.password)
+        $("#sex").val( row.sex );
+        $("#authority").val( row.authority );
     },
     'click #TableDelete': function (e, value, row, index) {
         $(this).parent().parent().remove()
@@ -39,9 +37,10 @@ $(function(){
         $("#editUserBlock").hide();
 
     })
+    // 用户信息请求
     $('#bs-table').bootstrapTable({
-        // url: "/userManage",                                   // 请求后台的URL（*）
-        // method: 'post',                                         //请求方式
+        url: "/getAllUser",                                   // 请求后台的URL（*）
+        method: 'post',                                         //请求方式
         toolbar:"#toolbar",
         striped: true,                                      //是否显示行间隔色
         sidePagination: "client",                           //分页方式：client客户端分页，server服务端分页（*）
@@ -72,11 +71,6 @@ $(function(){
                 align:'center'
             },
             {
-                field:'password',
-                title:'密码',
-                align:'center'
-            },
-            {
                 field:'sex',
                 title:'性别',
                 align:'center',
@@ -97,9 +91,10 @@ $(function(){
             }
         ],
     });
+    // 用户测试数据请求
     $('#bs-test').bootstrapTable({
-        // url: "/userManage",                                   // 请求后台的URL（*）
-        // method: 'post',                                         //请求方式
+        url: "/getAllUserScore",                                   // 请求后台的URL（*）
+        method: 'post',                                         //请求方式
         striped: true,                                      //是否显示行间隔色
         sidePagination: "client",                           //分页方式：client客户端分页，server服务端分页（*）
         pagination: true,                                   // 是否显示分页（*）
@@ -136,24 +131,25 @@ $(function(){
                 align:'center'
             },
             {
-                field:'type',
+                field:'typeName',
                 title:'类型',
                 align:'center',
             },
             {
-                field:'num',
+                field:'finalScore',
                 title:'成绩',
                 align:'center',
                 sortable:true
             },
             {
                 field:'time',
-                title:'时间',
+                title:'测试时间',
                 align:'center',
                 sortable:true
             }
         ]
     });
+    // 各类型平均分请求
     $('#bs-averagetable').bootstrapTable({
         url: "/getAvgScore",                                   // 请求后台的URL（*）
         // method: 'post',                                         //请求方式
@@ -169,13 +165,13 @@ $(function(){
         clickToSelect: true,
         columns:[
             {
-                field:'type',
+                field:'typeName',
                 title:'类型',
                 align:'center',
                 sortable:true
             },
             {
-                field:'average',
+                field:'finalScore',
                 title:'平均分',
                 align:'center',
                 sortable:true,

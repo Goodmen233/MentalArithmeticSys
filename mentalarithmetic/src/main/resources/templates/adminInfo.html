@@ -37,31 +37,31 @@
             </table>
 
             <div class="popBox" id="popbox" style="display: none">
-                <form >
+                <form th:action="@{/updateUser}" method="post">
                     <div class="userRow">
                         <label style="margin-left: 10px">用户ID</label>
                         <input type="text" id="show_user_id"  name="user_id" class="input" style="margin-left: 30px" disabled/>
                     </div>
-                    <input type="hidden" id="user_id"  name="user_id" class="input"/>
+                    <input type="hidden" id="userId"  name="userId" class="input"/>
                     <div class="userRow">
                         <label style="margin-left: 10px">用户名&nbsp;&nbsp;&nbsp;</label>
-                        <input type="text" id="user_username" name="user_username" class="input"/>
+                        <input type="text" id="username" name="username" class="input"/>
                     </div>
                     <div class="userRow">
                         <label style="margin-left: 10px">姓&nbsp;&nbsp;&nbsp;名</label>
-                        <input type="text" id="user_name" name="user_name"  class="input" style="margin-left: 30px"/>
+                        <input type="text" id="name" name="name"  class="input" style="margin-left: 30px"/>
                     </div>
                     <div class="userRow">
                         <label style="margin-left: 10px">密&nbsp;&nbsp;&nbsp;码</label>
-                        <input type="text" id="user_password" name="user_password" class="input" style="margin-left: 30px"/>
+                        <input type="text" id="password" name="password" class="input" style="margin-left: 30px"/>
                     </div>
                     <div class="userRow">
                         <label style="margin-left: 10px">性&nbsp;&nbsp;&nbsp;别</label>
-                        <input type="text" id="user_sex" name="user_sex" class="input" style="margin-left: 30px"/>
+                        <input type="text" id="sex" name="sex" class="input" style="margin-left: 30px"/>
                     </div>
                     <div class="userRow">
                         <label style="margin-left: 10px">权&nbsp;&nbsp;&nbsp;限</label>
-                        <input type="text" id="user_authority" name="user_authority" class="input" style="margin-left: 30px"/>
+                        <input type="text" id="authority" name="authority" class="input" style="margin-left: 30px"/>
                     </div>
                     <input type="submit" value="修改" class="btns" />
                 </form>
