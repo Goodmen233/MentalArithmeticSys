@@ -5,6 +5,7 @@ import com.fiveonetwo.arithmetic.service.UserService;
 import com.fiveonetwo.arithmetic.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,11 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @GetMapping("/")
+    public String getIndex(){
+        return "index";
+    }
 
 //    个人信息
 //    in：账号密码 out：用户名、姓名、测试总数、各个类型测试的最高分列表（类型、成绩、时间）/=》最近一次的游戏类型及分数
