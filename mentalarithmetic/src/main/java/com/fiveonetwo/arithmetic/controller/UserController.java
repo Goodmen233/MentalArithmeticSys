@@ -42,11 +42,15 @@ public class UserController {
         return mav;
     }
 
-//    个人信息
-//    in：账号密码 out：用户名、姓名、测试总数、各个类型测试的最高分列表（类型、成绩、时间）/=》最近一次的游戏类型及分数
+    /**
+     * 登录接口
+     * @param username 用户名
+     * @param password 密码
+     * @return 返回登录失败，或者管理员界面 或者用户界面
+     */
     @PostMapping("/login")
     @ResponseBody
-    public ModelAndView getUserInfo(String username, String password, HttpSession session){
+    public ModelAndView getUserInfo(String username, String password){
         //页面跳转对象
         ModelAndView mav = new ModelAndView();
 
@@ -62,6 +66,12 @@ public class UserController {
             mav.addObject("errormessage",0);
             return mav;
         }
+        user = users.get(0);
+        // 判断是否是管理员，是直接返回页面
+        if(user.getAuthority() == true){
+            mav.setViewName("adminInfo");
+            return mav;
+        }
         Integer userId = users.get(0).getId();
         // 测试总数
         int testNum = userService.selectTestNumById(userId);
@@ -71,7 +81,6 @@ public class UserController {
         map.put("testNum", testNum);
         map.put("scores", scores);
         JSONObject json = JSONObject.parseObject(JSON.toJSONString(map));
-        session.setAttribute("userId", user.getId());
         mav.setViewName("userInfo");
         mav.addObject("userInfo",json);
         System.out.println(map);

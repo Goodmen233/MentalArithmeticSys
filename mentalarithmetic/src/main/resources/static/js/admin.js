@@ -96,85 +96,6 @@ $(function(){
                 formatter: addFunctionAlty//表格中增加按钮
             }
         ],
-        data:[{
-            "id": 1,
-            "username": "ccb",
-            "name": "CCB",
-            "password":"333",
-            "sex":1,
-            "authority":0
-        },{
-            "id": 2,
-            "username": "pjy",
-            "name": "PJY",
-            "password":"111",
-            "sex":1,
-            "authority":0
-        },{
-            "id": 3,
-            "username": "wck",
-            "name": "WCK",
-            "password":"123",
-            "sex":1,
-            "authority":0
-        },{
-            "id": 4,
-            "username": "admin",
-            "name": "admin",
-            "password":"admin",
-            "sex":1,
-            "authority":1
-        },{
-            "id": 5,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        },{
-            "id": 6,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        },{
-            "id": 7,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        },{
-            "id": 8,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        },{
-            "id": 9,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        },{
-            "id": 10,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        },{
-            "id": 11,
-            "username": "prettyGirl",
-            "name": "pg",
-            "password":"444",
-            "sex":0,
-            "authority":0
-        }
-        ]
     });
     $('#bs-test').bootstrapTable({
         // url: "/userManage",                                   // 请求后台的URL（*）
@@ -231,58 +152,35 @@ $(function(){
                 align:'center',
                 sortable:true
             }
-        ],
-        //数据
-        data:[{
-            "sid": 1,
-            "uid": "3",
-            "username": "wck",
-            "name":"WCK",
-            "type":"123",
-            "num":100,
-            "time":'40s'
-        },{
-            "sid": 2,
-            "uid": "1",
-            "username": "CCB",
-            "name":"ccb",
-            "type":"123",
-            "num":90,
-            "time":'60s'
-        },{
-            "sid": 3,
-            "uid": "ccb",
-            "username": "PJY",
-            "name":"pjy",
-            "type":"123",
-            "num":80,
-            "time":'80s'
-        },{
-            "sid": 4,
-            "uid": "3",
-            "username": "llc",
-            "name":"llc",
-            "type":"123",
-            "num":70,
-            "time":'70s'
-        },{
-            "sid": 6,
-            "uid": "ccb",
-            "username": "CCB",
-            "name":"333",
-            "type":"123",
-            "num":60,
-            "time":'20s'
-        },{
-            "sid": 7,
-            "uid": "ccb",
-            "username": "CCB",
-            "name":"333",
-            "type":"123",
-            "num":30,
-            "time":'10s'
-        }
         ]
+    });
+    $('#bs-averagetable').bootstrapTable({
+        url: "/getAvgScore",                                   // 请求后台的URL（*）
+        // method: 'post',                                         //请求方式
+        striped: true,                                      //是否显示行间隔色
+        sidePagination: "client",                           //分页方式：client客户端分页，server服务端分页（*）
+        pagination: true,                                   // 是否显示分页（*）
+        search:true,                                        //是否显示表格搜索
+        strictSearch:true,
+        pageNumber: 1,                                      // 初始化加载第一页，默认第一页
+        pageSize: 2,                                        // 每页的记录行数（*）
+        showRefresh: false,
+        showColumns:false,
+        clickToSelect: true,
+        columns:[
+            {
+                field:'type',
+                title:'类型',
+                align:'center',
+                sortable:true
+            },
+            {
+                field:'average',
+                title:'平均分',
+                align:'center',
+                sortable:true,
+            }
+        ],
     });
 
 })
