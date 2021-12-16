@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TypeUtil<T> {
-    static Map<Integer, String> typeDic = new HashMap<>();
+    private static Map<Integer, String> typeDic = new HashMap<>();
     static {
         typeDic.put(121, "2位整数十分钟测试");
         typeDic.put(122, "2位整数100道测试");
