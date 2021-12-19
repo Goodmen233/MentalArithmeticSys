@@ -38,6 +38,7 @@ window.operateEvents = {
 function onload(){
     $("#editUserBlock").show();
     $("#userTestBlock").hide();
+    $("#averageTestBlock").hide();
 }
 
 $(function(){
@@ -47,9 +48,16 @@ $(function(){
     $("#editUserBtn").click(function(){
         $("#editUserBlock").show();
         $("#userTestBlock").hide();
+        $("#averageTestBlock").hide();
     })
     $("#userTestBtn").click(function(){
         $("#userTestBlock").show();
+        $("#editUserBlock").hide();
+        $("#averageTestBlock").hide();
+    })
+    $("#averageTestBtn").click(function(){
+        $("#averageTestBlock").show();
+        $("#userTestBlock").hide();
         $("#editUserBlock").hide();
 
     })
@@ -67,7 +75,6 @@ $(function(){
         strictSearch:true,
         pageNumber: 1,                                      // 初始化加载第一页，默认第一页
         pageSize: 6,                                        // 每页的记录行数（*）
-        pageList: [5,10,15],                               // 可供选择的每页的行数（*）
         showRefresh: false,
         showColumns:false,
         clickToSelect: true,
@@ -120,7 +127,6 @@ $(function(){
         strictSearch:true,
         pageNumber: 1,                                      // 初始化加载第一页，默认第一页
         pageSize: 6,                                        // 每页的记录行数（*）
-        pageList: [5,10,15],                               // 可供选择的每页的行数（*）
         showRefresh: false,
         showColumns:false,
         clickToSelect: true,
@@ -178,7 +184,7 @@ $(function(){
         search:true,                                        //是否显示表格搜索
         strictSearch:true,
         pageNumber: 1,                                      // 初始化加载第一页，默认第一页
-        pageSize: 2,                                        // 每页的记录行数（*）
+        pageSize: 6,                                        // 每页的记录行数（*）
         showRefresh: false,
         showColumns:false,
         clickToSelect: true,
