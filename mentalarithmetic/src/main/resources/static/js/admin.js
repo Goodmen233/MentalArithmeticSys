@@ -3,6 +3,8 @@ function addFunctionAlty(value, row, index) {
         '<button id="TableEditor" type="button" class="btn btn-default" style="color: aqua">编辑</button>',
     ].join('');
 }
+
+
 window.operateEvents = {
     'click #TableEditor': function (e, value, row, index) {
         $("#mask").show();
@@ -12,8 +14,22 @@ window.operateEvents = {
         $("#username").val( row.username );
         $("#name").val( row.name );
         $("#password").val(row.password)
-        $("#sex").val( row.sex );
-        $("#authority").val( row.authority );
+        $("#sex").each(function () {
+            if (row.sex == 1){
+                $(this).find("#man").prop("checked","checked")
+            };
+            if (row.sex == 0){
+                $(this).find("#woman").prop("checked","checked")
+            };
+        });
+        $("#authority").each(function () {
+            if (row.authority == 1){
+                $(this).find("#admin").prop("checked","checked")
+            };
+            if (row.authority == 0){
+                $(this).find("#user").prop("checked","checked")
+            };
+        });
     },
     'click #TableDelete': function (e, value, row, index) {
         $(this).parent().parent().remove()
@@ -37,6 +53,8 @@ $(function(){
         $("#editUserBlock").hide();
 
     })
+
+
     // 用户信息请求
     $('#bs-table').bootstrapTable({
         url: "/getAllUser",                                   // 请求后台的URL（*）
@@ -134,6 +152,8 @@ $(function(){
                 field:'typeName',
                 title:'类型',
                 align:'center',
+                sortable:true,
+                formatter:"fm_type"
             },
             {
                 field:'finalScore',
@@ -179,6 +199,11 @@ $(function(){
         ],
     });
 
+    $("#mask").click(function () {
+        $("#popbox").css("display","none");
+        $("#mask").hide();
+    })
+
 })
 
 $('#bs-table').bootstrapTable("hideLoading");
@@ -189,3 +214,61 @@ function fm_sex(value, row, index) {
 function fm_authority(value, row, index) {
     return value == 1 ? '管理员' : '用户';
 }
+
+function fm_type(value, row, index) {
+    if (value == '121')
+        return '2位整数，固定时间'
+    if (value == '122')
+        return '2位整数，固定数量'
+    if (value == '123')
+        return '2位整数，固定答对题目'
+    if (value == '131')
+        return '3位整数，固定时间'
+    if (value == '132')
+        return '3位整数，固定数量'
+    if (value == '133')
+        return '3位整数，固定答对题目'
+    if (value == '141')
+        return '4位整数，固定时间'
+    if (value == '142')
+        return '4位整数，固定数量'
+    if (value == '143')
+        return '4位整数，固定答对题目'
+    if (value == '221')
+        return '2位实数，固定时间'
+    if (value == '222')
+        return '2位实数，固定数量'
+    if (value == '223')
+        return '2位实数，固定答对题目'
+    if (value == '231')
+        return '3位实数，固定时间'
+    if (value == '232')
+        return '3位实数，固定数量'
+    if (value == '233')
+        return '3位实数，固定答对题目'
+    if (value == '241')
+        return '4位实数，固定时间'
+    if (value == '242')
+        return '4位实数，固定数量'
+    if (value == '243')
+        return '4位实数，固定答对题目'
+    if (value == '321')
+        return '2位分数，固定时间'
+    if (value == '322')
+        return '2位分数，固定数量'
+    if (value == '323')
+        return '2位分数，固定答对题目'
+    if (value == '331')
+        return '3位分数，固定时间'
+    if (value == '332')
+        return '3位分数，固定数量'
+    if (value == '333')
+        return '3位分数，固定答对题目'
+    if (value == '341')
+        return '4位分数，固定时间'
+    if (value == '342')
+        return '4位分数，固定数量'
+    if (value == '343')
+        return '4位分数，固定答对题目'
+}
+

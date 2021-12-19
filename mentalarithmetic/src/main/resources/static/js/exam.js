@@ -28,8 +28,8 @@ $(function(){
     for (var i = 0; i <100; i++) {
     	//确定运算符
     	let cul = oprator[Math.floor((Math.random()*oprator.length))];
-    	let adder1 = Math.floor(Math.random()*99+10);
-    	let adder2 = Math.floor(Math.random()*99+10);
+    	let adder1 = Math.floor(Math.random()*89+10);
+    	let adder2 = Math.floor(Math.random()*89+10);
     	let result;
     	if(cul == '+'){
     		result = adder1+adder2;
