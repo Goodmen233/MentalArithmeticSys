@@ -57,13 +57,13 @@
                     </div>
                     <div class="userRow" id="sex" name="sex">
                         <label style="margin-left: 10px">性&nbsp;&nbsp;&nbsp;别</label>
-                        <input type="radio" id="man" class="input" style="margin-left: 30px"/>男
-                        <input type="radio" id="woman" class="input" style="margin-left: 30px"/>女
+                        <input type="radio" name="sex" id="man" class="input" value="true" style="margin-left: 30px"/>男
+                        <input type="radio" name="sex" id="woman" class="input" value="false" style="margin-left: 30px"/>女
                     </div>
                     <div class="userRow" id="authority" name="authority">
                         <label style="margin-left: 10px">权&nbsp;&nbsp;&nbsp;限</label>
-                        <input type="text" id="admin" class="input" style="margin-left: 30px"/>管理员
-                        <input type="text" id="user" class="input" style="margin-left: 30px"/>用户
+                        <input type="radio" name="authority" id="admin" class="input" value="true" style="margin-left: 30px"/>管理员
+                        <input type="radio" name="authority" id="user" class="input" value="false" style="margin-left: 30px"/>用户
                     </div>
                     <input type="submit" value="修改" class="btns" />
                 </form>
@@ -78,7 +78,7 @@
                     <th data-field="uid" align="center" data-sortable=true >用户ID</th>
                     <th data-field="username" align="center" >用户名</th>
                     <th data-field="name" align="center" >姓名</th>
-                    <th data-field="type" align="center" data-sortable=true >类型</th>
+                    <th data-field="typeName" align="center" data-sortable=true >类型</th>
                     <th data-field="num" align="center" data-sortable=true >成绩</th>
                     <th data-field="time" align="center" data-sortable=true >时间</th>
                 </tr>

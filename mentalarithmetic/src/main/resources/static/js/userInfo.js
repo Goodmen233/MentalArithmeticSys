@@ -24,7 +24,7 @@ $(function(){
 				console.log(data)
 				for(let item=0;item<data.length;item++){
 					let li = {
-						type:data[item].type,
+						type:data[item].typeName,
 						score:data[item].finalScore,
 						time:data[item].time
 					}

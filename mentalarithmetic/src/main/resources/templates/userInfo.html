@@ -58,7 +58,7 @@
 								<div class="historyMaxLabel">时间</div>
 							</div>
 							<div class="historyMaxListTB" th:each="score:${session.scores}">
-								<div class="historyMaxLabel" th:text="${score.type}"></div>
+								<div class="historyMaxLabel" th:text="${score.typeName}"></div>
 								<div class="historyMaxLabel" th:text="${score.finalScore}"></div>
 								<div class="historyMaxLabel" th:text="${#dates.format(score.time, 'yyyy-MM-dd HH:mm:ss')}"></div>
 							</div>

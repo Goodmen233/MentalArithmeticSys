@@ -153,7 +153,6 @@ $(function(){
                 title:'类型',
                 align:'center',
                 sortable:true,
-                formatter:"fm_type"
             },
             {
                 field:'finalScore',
@@ -214,61 +213,3 @@ function fm_sex(value, row, index) {
 function fm_authority(value, row, index) {
     return value == 1 ? '管理员' : '用户';
 }
-
-function fm_type(value, row, index) {
-    if (value == '121')
-        return '2位整数，固定时间'
-    if (value == '122')
-        return '2位整数，固定数量'
-    if (value == '123')
-        return '2位整数，固定答对题目'
-    if (value == '131')
-        return '3位整数，固定时间'
-    if (value == '132')
-        return '3位整数，固定数量'
-    if (value == '133')
-        return '3位整数，固定答对题目'
-    if (value == '141')
-        return '4位整数，固定时间'
-    if (value == '142')
-        return '4位整数，固定数量'
-    if (value == '143')
-        return '4位整数，固定答对题目'
-    if (value == '221')
-        return '2位实数，固定时间'
-    if (value == '222')
-        return '2位实数，固定数量'
-    if (value == '223')
-        return '2位实数，固定答对题目'
-    if (value == '231')
-        return '3位实数，固定时间'
-    if (value == '232')
-        return '3位实数，固定数量'
-    if (value == '233')
-        return '3位实数，固定答对题目'
-    if (value == '241')
-        return '4位实数，固定时间'
-    if (value == '242')
-        return '4位实数，固定数量'
-    if (value == '243')
-        return '4位实数，固定答对题目'
-    if (value == '321')
-        return '2位分数，固定时间'
-    if (value == '322')
-        return '2位分数，固定数量'
-    if (value == '323')
-        return '2位分数，固定答对题目'
-    if (value == '331')
-        return '3位分数，固定时间'
-    if (value == '332')
-        return '3位分数，固定数量'
-    if (value == '333')
-        return '3位分数，固定答对题目'
-    if (value == '341')
-        return '4位分数，固定时间'
-    if (value == '342')
-        return '4位分数，固定数量'
-    if (value == '343')
-        return '4位分数，固定答对题目'
-}
-
