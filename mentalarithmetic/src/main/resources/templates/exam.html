@@ -2,8 +2,8 @@
 <html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
-<title>考试页面</title>
-
+<title>用户页面</title>
+	<link rel="shortcut icon" href="#" />
 <link rel="stylesheet" th:href="@{/css/exam.css}">
 <!-- <script src="js/exam.js" ></script> -->
 </head>
@@ -70,10 +70,10 @@
 				</div>
 				<!-- 题目显示区域 -->
 				<div class="subjectNo" id="subjectNo">
-					<div class="sheetBlcok">
-						1
-					</div>
-					<div class="sheetBlcok" style="background-color: #850D04FF">2</div>
+<!--					<div class="sheetBlcok">-->
+<!--						1-->
+<!--					</div>-->
+<!--					<div class="sheetBlcok" style="background-color: #850D04FF">2</div>-->
 					
 				</div>
 			</div>
@@ -124,6 +124,7 @@
 
 	console.log("bit="+bit+" type="+type+" modal="+modal);
 
+
     // 生成二位算数列表
     if(bit == 2){
     	if(type == 1){//整数
@@ -153,6 +154,7 @@
 					result = adder1;
 					adder1 = temp;
 				}
+				result = result.toFixed(8);
 				let item = {
 					adder1:adder1,
 					alg:cul,
@@ -191,6 +193,7 @@
 					result = adder1;
 					adder1 = temp;
 				}
+				result = result.toFixed(8);
 				let item = {
 					adder1:adder1,
 					alg:cul,
@@ -199,8 +202,67 @@
 				}
 				List.push(item);
 			}
-		}
+		}else if(type == 3){
+			$("div.child").css("width","300");
+			$("#alg .child").css("width","130");
+			$("div.child").css("font-size","80px");
+			$("#alg .child").css("font-size","100px");
+    		for(let i=0;i<100;i++){
+				let cul = oprator[Math.floor((Math.random()*oprator.length))];
+				let adder1 = Math.floor(Math.random()*9+1)*0.01;
+				let adder11 = createFrc(adder1);
+				let adder2 = Math.floor(Math.random()*9+1)*0.01;
+				let adder22 = createFrc(adder2);
+				let result;
+				if(cul == "+"){
+					result = adder2+adder1;
+				}else if(cul == "-"){
+					if(adder1>adder2){
+						result = adder1-adder2;
+					}else{
+						let temp = adder2;
+						adder2 = adder1;
+						adder1 = temp;
+						result = adder1-adder2;
 
+						temp = adder11;
+						adder11 = adder22;
+						adder22 = adder11;
+					}
+				}else if(cul == "x"){
+					result = adder1*adder2;
+				}else if(cul == "/"){
+					result = adder1/adder2;
+				}
+
+				result = result.toFixed(8);
+				let item = {
+					adder1:adder11,
+					alg:cul,
+					adder2:adder22,
+					result:result
+				}
+				List.push(item);
+			}
+			console.log("finish");
+		}
+		Top.innerHTML = List[0].adder1;
+    	// flip.innerHTML = List[0].adder1;
+    	flipBack.innerHTML = List[0].adder1;
+    	flipFace.innerHTML = List[0].adder1;
+    	Bottom.innerHTML = List[0].adder1;
+
+		Top1.innerHTML = List[0].alg;
+		// flip1.innerHTML = List[0].alg;
+		flipBack1.innerHTML = List[0].alg;
+		flipFace1.innerHTML = List[0].alg;
+		Bottom1.innerHTML = List[0].alg;
+
+		Top2.innerHTML = List[0].adder2;
+		// flip2.innerHTML = List[0].adder2;
+		flipBack2.innerHTML = List[0].adder2;
+		flipFace2.innerHTML = List[0].adder2;
+		Bottom2.innerHTML = List[0].adder2;
     }
     
 
@@ -227,6 +289,8 @@
 					result = adder1;
 					adder1 = temp;
 				}
+
+				result = result.toFixed(8);
 				let item = {
 					adder1:adder1,
 					alg:cul,
@@ -255,6 +319,8 @@
 					result = adder1;
 					adder1 = temp;
 				}
+
+				result = result.toFixed(8);
 				let item = {
 					adder1:adder1,
 					alg:cul,
@@ -263,8 +329,69 @@
 				}
 				List.push(item);
 			}
-		}
+		}else if(type == 3){
+			$("div.child").css("width","300");
+			$("#alg .child").css("width","130");
+			$("div.child").css("font-size","80px");
+			$("#alg .child").css("font-size","100px");
+    		for(let i=0;i<100;i++){
+				let cul = oprator[Math.floor((Math.random()*oprator.length))];
+				let adder1 = Math.floor(Math.random()*9+1)*0.01;
+				let adder11 = createFrc(adder1);
+				let adder2 = Math.floor(Math.random()*9+1)*0.01;
+				let adder22 = createFrc(adder2);
+				let result;
+				console.log("createOne");
+				if(cul == "+"){
+					result = adder2+adder1;
+				}else if(cul == "-"){
+					if(adder1>adder2){
+						result = adder1-adder2;
+					}else{
+						let temp = adder2;
+						adder2 = adder1;
+						adder1 = temp;
+						result = adder1-adder2;
 
+						temp = adder11;
+						adder11 = adder22;
+						adder22 = adder11;
+					}
+				}else if(cul == "x"){
+					result = adder1*adder2;
+				}else if(cul == "/"){
+					result = adder1/adder2;
+				}
+
+				result = result.toFixed(8);
+				let item = {
+					adder1:adder11,
+					alg:cul,
+					adder2:adder22,
+					result:result
+				}
+				List.push(item);
+				console.log("createOneFinish");
+			}
+			console.log("finishCreate");
+		}
+		Top.innerHTML = List[0].adder1;
+		flip.innerHTML = List[0].adder1;
+		flipBack.innerHTML = List[0].adder1;
+		flipFace.innerHTML = List[0].adder1;
+		Bottom.innerHTML = List[0].adder1;
+
+		Top1.innerHTML = List[0].alg;
+		flip1.innerHTML = List[0].alg;
+		flipBack1.innerHTML = List[0].alg;
+		flipFace1.innerHTML = List[0].alg;
+		Bottom1.innerHTML = List[0].alg;
+
+		Top2.innerHTML = List[0].adder2;
+		flip2.innerHTML = List[0].adder2;
+		flipBack2.innerHTML = List[0].adder2;
+		flipFace2.innerHTML = List[0].adder2;
+		Bottom2.innerHTML = List[0].adder2;
     }
     
 	//生成四位
@@ -290,6 +417,8 @@
 					result = adder1;
 					adder1 = temp;
 				}
+
+				result = result.toFixed(8);
 				let item = {
 					adder1:adder1,
 					alg:cul,
@@ -318,6 +447,7 @@
 					result = adder1;
 					adder1 = temp;
 				}
+				result = result.toFixed(8);
 				let item = {
 					adder1:adder1,
 					alg:cul,
@@ -326,8 +456,67 @@
 				}
 				List.push(item);
 			}
-		}
+		}else if(type == 3){
+			$("div.child").css("width","300");
+			$("#alg .child").css("width","130");
+			$("div.child").css("font-size","80px");
+			$("#alg .child").css("font-size","100px");
+    		for(let i=0;i<100;i++){
+				let cul = oprator[Math.floor((Math.random()*oprator.length))];
+				let adder1 = Math.floor(Math.random()*9+1)*0.01;
+				let adder11 = createFrc(adder1);
+				let adder2 = Math.floor(Math.random()*9+1)*0.01;
+				let adder22 = createFrc(adder2);
+				let result;
+				if(cul == "+"){
+					result = adder2+adder1;
+				}else if(cul == "-"){
+					if(adder1>adder2){
+						result = adder1-adder2;
+					}else{
+						let temp = adder2;
+						adder2 = adder1;
+						adder1 = temp;
+						result = adder1-adder2;
 
+						temp = adder11;
+						adder11 = adder22;
+						adder22 = adder11;
+					}
+				}else if(cul == "x"){
+					result = adder1*adder2;
+				}else if(cul == "/"){
+					result = adder1/adder2;
+				}
+
+				result = result.toFixed(8);
+				let item = {
+					adder1:adder11,
+					alg:cul,
+					adder2:adder22,
+					result:result
+				}
+				List.push(item);
+			}
+
+		}
+		Top.innerHTML = List[0].adder1;
+		flip.innerHTML = List[0].adder1;
+		flipBack.innerHTML = List[0].adder1;
+		flipFace.innerHTML = List[0].adder1;
+		Bottom.innerHTML = List[0].adder1;
+
+		Top1.innerHTML = List[0].alg;
+		flip1.innerHTML = List[0].alg;
+		flipBack1.innerHTML = List[0].alg;
+		flipFace1.innerHTML = List[0].alg;
+		Bottom1.innerHTML = List[0].alg;
+
+		Top2.innerHTML = List[0].adder2;
+		flip2.innerHTML = List[0].adder2;
+		flipBack2.innerHTML = List[0].adder2;
+		flipFace2.innerHTML = List[0].adder2;
+		Bottom2.innerHTML = List[0].adder2;
     }
     
 
@@ -347,7 +536,7 @@
     size();
 
     //类型1（固定时间，答对题目越多成绩越高）
-    if(type == 1){
+    if(modal == 1){
     	//倒计时30分钟
 	    const countdown = ()=>{
 	    	minute = "00";
@@ -356,7 +545,8 @@
 		    timerTwo = setInterval(function(){
 		    	if(minute == "00" && second == "01"){
 			    	clearInterval(timerTwo);
-			    	setTimeout("alert('时间到，答题结束！')",3000);
+			    	alert("测试超时，强制交卷!");
+			    	// setTimeout("alert('测试超时，强制交卷！')",3000);
 			    	//发送请求
 			    	$.ajax({
 			    		url:"/uploadScore",
@@ -371,7 +561,9 @@
 			    		success:function(data){
 			    			console.log("结果："+data);
 			    			//跳转到首页
-			    			self.location = document.referrer;
+			    			// self.location = document.referrer;
+							// window.location.href="userInfo.html";
+							history.back(-1);
 			    		}
 
 			    	})
@@ -402,8 +594,7 @@
     }
     
     //类型2（固定题目数量，答对题目越多且用时越少成绩越高）
-    else if(type == 2){
-    	let max = 20;
+    else if(modal == 2){
     	//设置时间
     	var countTime = ()=>{
     		minute = "00";
@@ -455,7 +646,7 @@
     }
 
     //类型3（固定需要答对题目的数量，用时越少分数越高）
-    else if(type == 3){
+    else if(modal == 3){
     	maxRightCount = 3;//需要答对的题目数量
     	//计时
     	let countTime = ()=>{
@@ -464,7 +655,8 @@
     		timerTwo = setInterval(function(){
     			if(minute >= "60"){
     				clearInterval(timerTwo);
-    				setTimeout('alert("测试超时，强制交卷！")',3000);
+    				alert("测试超时，强制交卷！");
+    				// setTimeout('alert("测试超时，强制交卷！")',3000);
     				$.ajax({
     					url:"/uploadScore",
 			    		data:{
@@ -478,7 +670,8 @@
 			    		success:function(data){
 			    			console.log(data);
 			    			//跳转到首页
-			    			window.location.href="userInfo.html";
+			    			// window.location.href="userInfo.html";
+							history.back(-1);
 			    		}
     				})
     			}else{
@@ -594,15 +787,20 @@
     var index = 0;
     //下一题按钮点击事件
     $("#change").click(function(){
-
-    	if (document.getElementById("answer").value == List[index].result) {//判断结果是否正确
+		OneCycle(index,timer);
+		console.log(document.getElementById("answer").value);
+		console.log(List[index].result);
+    	if ((document.getElementById("answer").value - List[index].result).toFixed(8) == (0).toFixed(8)) {//判断结果是否正确
     		rightCount++;
     		console.log("rightCount="+rightCount);
-    		if(type == 2){
+			document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok" style="background-color: darkolivegreen">'+(index+1)+'</div>';
+    		index++;
+			if(type == 2){
     			if(index == 19){
     				timeStamp = 1000*second+60000*minute;
     				console.log(timeStamp);
-    				setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
+    				alert("测试完成，成绩提交完后跳转首页");
+    				// setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
     				$.ajax({
     					url:"/uploadScore",
 			    		data:{
@@ -616,8 +814,10 @@
 			    		success:function(data){
 			    			console.log(data);
 			    			//跳转到首页
-			    			window.location.href="userInfo.html";
+			    			// window.location.href="userInfo.html";
+							history.back(-1);
 			    		}
+
     				})
     			}
     		}
@@ -626,7 +826,8 @@
     				clearInterval(countTime);
     				timeStamp = 1000*second+60000*minute;
     				console.log(timeStamp);
-    				setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
+    				alert("测试完成，成绩提交完后跳转首页！");
+    				// setTimeout('alert("测试完成，成绩提交完后跳转首页！")',3000);
     				$.ajax({
     					url:"/uploadScore",
 			    		data:{
@@ -640,7 +841,8 @@
 			    		success:function(data){
 			    			console.log(data);
 			    			//跳转到首页
-			    			window.location.href="userInfo.html";
+			    			// window.location.href="userInfo.html";
+							history.back(-1);
 			    		}
     				})
     			}
@@ -649,20 +851,28 @@
 
     	}else{
     		console.log("wrong answer! the right answer is "+List[index].result)
+			document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok" style="background-color: #850D04FF">'+(index+1)+'</div>';
+    		index++;
     	}
-      	OneCycle(index,timer);
-      	index++;
+
       	document.getElementById('answer').value = '';
-      	//结果正确则在答题卡中显示正确的颜色，错误则显示错误的颜色
-      	if(document.getElementById("answer").value == List[index].result){
-      		document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok">'+(index+1)+'</div>';
-      	}else{
-      		document.getElementById('subjectNo').innerHTML+='<div class="sheetBlcok" style="background-color: #850D04FF">'+(index+1)+'</div>';
-      	}
+
     })
 
 
-
+	function createFrc(frc) {
+		let a = 1;
+		let b = 1;
+		while(frc!=a/b){
+			if(frc>a/b){
+				a++;
+			}else{
+				b++;
+			}
+		}
+		console.log("frc")
+		return a+"/"+b;
+	}
   </script>
 
 </body>

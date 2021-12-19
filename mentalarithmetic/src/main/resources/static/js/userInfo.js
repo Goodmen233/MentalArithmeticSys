@@ -65,3 +65,58 @@ function onload(){
 	$("#historyBlock").hide();
 }
 
+function alterInfo() {
+	let username = $("#alterUsername").val();
+	let oldPwd = $("#alterOldPsw").val();
+	let newPwd = $("#alterNewPsw").val();
+	let pwd = $("#userPwd").val();
+	console.log(pwd);
+	console.log(oldPwd);
+	console.log(newPwd);
+	console.log(username);
+	if (username){
+		if(pwd == oldPwd){
+			if (newPwd){
+				$.ajax({
+					url:'/updateUserInfo',
+					data:{
+						'userId':userId,
+						'username':username,
+						'password':newPwd
+					},
+					success:function (res) {
+						if(res == 1){
+							alert("修改成功");
+						}else{
+							alert("修改失败，请稍后重试")
+						}
+					}
+				})
+			}
+			else {
+				$.ajax({
+					url:'/updateUserInfo',
+					data:{
+						'userId':userId,
+						'username':username,
+						'password':oldPwd
+					},
+					success:function (res) {
+						if(res == 1){
+							alert("修改成功");
+						}else{
+							alert("修改失败，请稍后重试")
+						}
+					}
+				})
+			}
+		}else{
+			alert("密码错误！");
+		}
+	}else{
+		alert("用户名不能为空！");
+	}
+
+
+
+}

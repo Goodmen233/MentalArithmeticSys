@@ -30,6 +30,11 @@ public class UserController {
         return "index";
     }
 
+    /**
+     * 开始测试接口
+     * @param request 请求
+     * @return
+     */
     @RequestMapping(value = "/exam",method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView getExam(HttpServletRequest request){
         ModelAndView mav = new ModelAndView();
@@ -95,7 +100,7 @@ public class UserController {
 
 //    上传测试结果信息
 //    in：用户id、测试类型、成绩（结果）、时间 out：1 or -1
-    @PostMapping("/uploadScore")
+    @RequestMapping("/uploadScore")
     @ResponseBody
     public int uploadScore(Integer userId, Integer type, Integer rightCount, Integer timeStamp){
         Score score = new Score();

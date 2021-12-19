@@ -9,6 +9,7 @@
 </head>
 <body onload="onload()">
 <input type="hidden" id="userId" style="display: none;" th:value = "${session.user.id}">
+<input type="hidden" id="userPwd" th:valur = "${session.user.password}">
 	<!-- 最外层 -->
 	<div class="outer">
 		<div class="mask" hidden="True"></div>
@@ -77,22 +78,22 @@
 					</div>
 					<div class="alterInfoForm">
 						<div class="alterInfoLabel">用户昵称</div>
-						<div class="alterInfoLabel1"><input type="text" name="username" class="inputBox"></div>
+						<div class="alterInfoLabel1"><input type="text" id="alterUsername" class="inputBox" th:value="${session.user.username}"></div>
 					</div>
 					<div class="alterInfoForm">
 						<div class="alterInfoLabel">真实姓名</div>
-						<div class="alterInfoLabel1"><input type="text" name="name" class="inputBox"></div>
+						<div class="alterInfoLabel1"><input type="text" class="inputBox" th:value="${session.user.name}" disabled></div>
 					</div>
 					<div class="alterInfoForm">
 						<div class="alterInfoLabel">旧密码</div>
-						<div class="alterInfoLabel1"><input type="password" name="oldPsw" class="inputBox"></div>
+						<div class="alterInfoLabel1"><input type="password" id="alterOldPsw" class="inputBox"></div>
 					</div>
 					<div class="alterInfoForm">
 						<div class="alterInfoLabel">新密码</div>
-						<div class="alterInfoLabel1"><input type="password" name="newPsw" class="inputBox"></div>
+						<div class="alterInfoLabel1"><input type="password" id="alterNewPsw" class="inputBox"></div>
 					</div>
 					<div style="width: inherit;height: 40px;">
-						<div class="confirmAlterBtn">确认修改</div>
+						<div class="confirmAlterBtn" onclick="alterInfo()">确认修改</div>
 					</div>
 				</div>
 			</div>
@@ -124,7 +125,7 @@
 <!--						<div class="beginBtn" onclick="beginTest()">开始测试</div>-->
 					</div>
 				</form>
-				
+
 			</div>
 
 			<!-- 历史记录模块 -->
